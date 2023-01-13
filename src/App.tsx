@@ -1,10 +1,10 @@
-import { Global } from "@emotion/react";
-import reset from "./reset";
+import { Global } from '@emotion/react';
+import reset from './reset';
 
 function App() {
   return (
     <div>
-      <Global styles={reset}/>
+      <Global styles={reset} />
       <p>GitHub Issue</p>
     </div>
   );
