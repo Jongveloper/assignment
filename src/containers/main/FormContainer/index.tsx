@@ -1,4 +1,4 @@
-import Form from '../../components/search/Form';
+import Form from '../../../components/main/Form';
 
 function FormContainer() {
   return (

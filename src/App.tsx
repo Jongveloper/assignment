@@ -1,6 +1,6 @@
 import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
-import Search from './pages/Search';
+import Main from './pages/Main';
 
 import reset from './reset';
 
@@ -9,7 +9,7 @@ function App() {
     <>
       <Global styles={reset} />
       <Routes>
-        <Route index element={<Search />} />
+        <Route index element={<Main />} />
       </Routes>
     </>
   );

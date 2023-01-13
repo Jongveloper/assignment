@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { Button, TextField } from '@mui/material';
 
-import CenterLayout from '../common/CenterLayout';
+import CenterLayout from '../../common/CenterLayout';
 
 const FlexForm = styled.form`
   display: flex;
