@@ -1,12 +1,17 @@
 import { Global } from '@emotion/react';
+import { Route, Routes } from 'react-router-dom';
+import Search from './pages/Search';
+
 import reset from './reset';
 
 function App() {
   return (
-    <div>
+    <>
       <Global styles={reset} />
-      <p>GitHub Issue</p>
-    </div>
+      <Routes>
+        <Route index element={<Search />} />
+      </Routes>
+    </>
   );
 }
 
