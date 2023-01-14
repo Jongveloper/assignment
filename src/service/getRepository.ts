@@ -2,6 +2,8 @@ import axios, { AxiosError } from 'axios';
 
 import { RequestRepositoriesProps } from '../types/Repository';
 
+import { UnknownError } from "./commonError";
+
 interface ServerError {
   errors: { status: string, field: string, message: string }[];
 }
@@ -21,12 +23,6 @@ class ValidationError extends Error {
 class ServiceError extends Error {
   constructor() {
     super('서비스가 불가합니다. 잠시 후 다시 이용해주세요.');
-  }
-}
-
-class UnknownError extends Error {
-  constructor() {
-    super('예기치 못한 오류가 발생했습니다. 잠시 후 다시 이용해주세요.');
   }
 }
 
