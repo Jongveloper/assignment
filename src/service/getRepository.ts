@@ -1,12 +1,9 @@
 import axios, { AxiosError } from 'axios';
 
+import { ServerError } from "./type";
 import { RequestRepositoriesProps } from '../types/Repository';
 
 import { UnknownError } from "./commonError";
-
-interface ServerError {
-  errors: { status: string, field: string, message: string }[];
-}
 
 class AuthorizationError extends Error {
   constructor() {
