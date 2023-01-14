@@ -6,31 +6,10 @@ import { getRepository } from '../../service/getRepository';
 
 import { convertRepositories } from '../../utils/convertRepositories';
 
+import { Repository } from "./type";
 import { RequestRepositoriesProps } from '../../types/Repository';
 
 import { setDialog, setLoading } from '../common';
-
-export interface IssuesUrlInfo {
-  owner: string;
-  repo: string;
-}
-
-export interface RepositoryInfo {
-  id: number;
-  full_name: string;
-  updated_at: string;
-  description: string;
-  language?: string;
-  stargazers_count?: number | string;
-  circleColor: string;
-  issues_url: IssuesUrlInfo;
-}
-
-interface Repository {
-  repositories: RepositoryInfo[];
-  searchWord: string;
-  page: number;
-}
 
 export const initialState:Repository = {
   repositories: [],
