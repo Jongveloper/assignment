@@ -12,7 +12,7 @@ interface Props {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const FlexForm = styled.form`
+const RepositorySearchForm = styled.form`
   display: flex;
 `;
 
@@ -34,14 +34,14 @@ function Form({
   return (
     <>
       <CenterLayout>
-        <FlexForm onSubmit={onSubmit}>
+        <RepositorySearchForm onSubmit={onSubmit}>
           <SearchInput
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
             value={searchWord}
             placeholder="검색하고 싶은 레포지토리를 입력해주세요"
           />
           <SearchButton type="submit" variant="contained">검색</SearchButton>
-        </FlexForm>
+        </RepositorySearchForm>
       </CenterLayout>
     </>
   );
