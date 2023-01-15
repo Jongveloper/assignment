@@ -1,13 +1,16 @@
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import CommonDialog from '../../../components/common/Dialog';
 
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { closeDialog } from '../../../redux/common';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { setInitialRepositoryId } from '../../../utils/setInitialRepositoryId';
 
 function DialogContainer() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     dialog: {
@@ -19,6 +22,10 @@ function DialogContainer() {
     dispatch(closeDialog());
   }, []);
 
+  const handleNavigate = useCallback(() => {
+    navigate(`/bookmark/${setInitialRepositoryId()}`);
+  }, []);
+
   return (
     <CommonDialog
       isOpen={isOpen}
@@ -26,7 +33,7 @@ function DialogContainer() {
       title={title}
       status={status}
       handleClose={handleCloseDialog}
-      handleNavigate={() => {}}
+      handleNavigate={handleNavigate}
     />
   );
 }
