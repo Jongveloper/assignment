@@ -1,4 +1,4 @@
-import { IssuesUrlInfo, RepositoryInfo } from "../repository/type";
+import { IssuesUrlInfo, RepositoryInfo } from '../repository/type';
 
 export interface Issue {
   user: string;
@@ -6,13 +6,9 @@ export interface Issue {
   body: string;
 }
 
-export interface Bookmarks {
+export interface Bookmark {
   issues: Issue[];
   repository: RepositoryInfo;
-}
-
-export interface Bookmark {
-  bookmarks: Bookmarks[] | string;
 }
 
 export interface loadIssueProps extends IssuesUrlInfo {
