@@ -10,7 +10,7 @@ import { setDialog } from '../common';
 
 import { AppDispatch, RootState } from '../store';
 
-import { Bookmark } from './type';
+import { Bookmark, loadIssueProps } from './type';
 
 const MAX_BOOKMARKS_SIZE = 4;
 
@@ -37,27 +37,52 @@ const { actions, reducer } = createSlice({
         return state;
       }
 
-      const bookmark = state.bookmarks
-        .find(({ repository }) => repository.id === id);
+      const bookmark = state.bookmarks.find(({
+        repository,
+      }) => repository.id === id);
 
       return {
         ...state,
         selectedBookmark: bookmark,
       };
     },
+    deleteBookmark: (state, { payload: bookmarks }) => ({
+      ...state,
+      bookmarks,
+    }),
   },
 });
 
 export const {
   saveBookmarks,
   selectBookmark,
+  deleteBookmark,
 } = actions;
+
+export const setRemainBookmark = (id : number) => (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => {
+  const { bookmark: { bookmarks, selectedBookmark } } = getState();
+
+  if (selectedBookmark?.repository.id === id) {
+    dispatch(selectBookmark([]));
+  }
+
+  const remainBookmarks = bookmarks.filter(({ repository }) => repository.id !== id);
+
+  localStorage.removeItem('bookmark');
+
+  dispatch(deleteBookmark(remainBookmarks));
+
+  localStorage.setItem('bookmark', JSON.stringify(remainBookmarks));
+};
 
 export const setBookmark = ({
   owner,
   repo,
   repository,
-}: any) => async (dispatch: AppDispatch, getState: () => RootState) => {
+}: loadIssueProps) => async (dispatch: AppDispatch, getState: () => RootState) => {
   const { bookmark: { bookmarks } } = getState();
 
   if (alreadyExistsIn(bookmarks, repository)) {
