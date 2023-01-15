@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import StarBorder from '@mui/icons-material/StarBorder';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
-import { RepositoryInfo } from '../../../redux/repository';
-import { loadIssueProps } from '../../../redux/bookmark/index';
+import { RepositoryInfo } from '../../../redux/repository/type';
+import { loadIssueProps } from '../../../redux/bookmark/type';
 
 import CenterLayout from '../../common/CenterLayout';
 
@@ -72,9 +72,11 @@ function Repository({
   language,
   stargazers_count,
   circleColor,
-  issues_url: { repo, owner },
+  repo, 
+  owner,
   handleClick,
 }: Props) {
+
   return (
     <CenterLayout>
       <Wrap>
@@ -93,7 +95,8 @@ function Repository({
                 language,
                 stargazers_count,
                 circleColor,
-                issues_url: { repo, owner },
+                repo, 
+                owner,
               },
             })}
           >
