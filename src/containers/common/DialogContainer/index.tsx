@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import CommonDialog from '../../../components/common/Dialog';
@@ -24,6 +24,10 @@ function DialogContainer() {
 
   const handleNavigate = useCallback(() => {
     navigate(`/bookmark/${setInitialRepositoryId()}`);
+  }, []);
+
+  useEffect(() => () => {
+    dispatch(closeDialog());
   }, []);
 
   return (
