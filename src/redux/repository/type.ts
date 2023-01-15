@@ -11,7 +11,8 @@ export interface RepositoryInfo {
   language?: string;
   stargazers_count?: number | string;
   circleColor: string;
-  issues_url: IssuesUrlInfo;
+  owner: string;
+  repo: string;
 }
 
 export interface Repository {
