@@ -6,7 +6,7 @@ import { getRepository } from '../../service/getRepository';
 
 import { convertRepositories } from '../../utils/convertRepositories';
 
-import { Repository } from "./type";
+import { Repository } from './type';
 import { RequestRepositoriesProps } from '../../types/Repository';
 
 import { setDialog, setLoading } from '../common';
