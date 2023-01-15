@@ -1,6 +1,7 @@
 export interface IssuesUrlInfo {
   owner: string;
   repo: string;
+  page?: number;
 }
 
 export interface RepositoryInfo {
