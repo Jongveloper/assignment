@@ -2,19 +2,19 @@ import axios, { AxiosError } from 'axios';
 
 import { IssuesUrlInfo } from '../redux/repository/type';
 
-import { UnknownError } from "./commonError";
+import { UnknownError } from './commonError';
 
-import { ServerError } from "./type";
+import { ServerError } from './type';
 
 class NotFound extends Error {
   constructor() {
-    super('잘못된 경로입니다.')
+    super('잘못된 경로입니다.');
   }
 }
 
 class ValidationError extends Error {
   constructor() {
-    super('유저명 혹은 레포지토리가 잘못되었습니다.')
+    super('유저명 혹은 레포지토리가 잘못되었습니다.');
   }
 }
 
