@@ -1,11 +1,26 @@
-import { Fragment } from 'react';
+import { Fragment, useCallback } from 'react';
 
 import Issue from '../../../components/bookmark/Issue';
+import { setMoreBookmarks } from '../../../redux/bookmark';
 
-import { useAppSelector } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import InfinityScroll from '../../main/InfinityScrollContainer';
 
 export default function IssueContainer() {
-  const { selectedBookmark } = useAppSelector((state) => state.bookmark);
+  const dispatch = useAppDispatch();
+  const {
+    selectedBookmark,
+    page,
+  } = useAppSelector((state) => state.bookmark);
+
+  const getMoreIssues = useCallback(() => {
+    dispatch(setMoreBookmarks({
+      repo: selectedBookmark?.repository.repo!,
+      owner: selectedBookmark?.repository.owner!,
+      page,
+      repository: selectedBookmark?.repository!,
+    }));
+  }, [selectedBookmark, page]);
 
   return (
     <>
@@ -16,6 +31,11 @@ export default function IssueContainer() {
             user={user}
             title={title}
             body={body}
+          />
+          <InfinityScroll
+            index={idx}
+            length={selectedBookmark.issues.length}
+            next={getMoreIssues}
           />
         </Fragment>
       ))}
