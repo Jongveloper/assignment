@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-import { IssuesUrlInfo } from '../redux/repository/index';
+import { IssuesUrlInfo } from '../redux/repository/type';
 
 import { UnknownError } from "./commonError";
 
