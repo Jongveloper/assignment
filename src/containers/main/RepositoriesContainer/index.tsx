@@ -4,8 +4,12 @@ import InfinityScroll from '../InfinityScrollContainer';
 
 import Repository from '../../../components/main/Repository';
 
-import { loadIssueProps, setBookmark } from '../../../redux/bookmark';
+import { loadIssueProps} from '../../../redux/bookmark/type';
+
 import { loadMoreRepositories } from '../../../redux/repository';
+
+import { setBookmark } from "../../../redux/bookmark";
+
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 function RepositoriesContainer() {
@@ -30,7 +34,8 @@ function RepositoriesContainer() {
         language,
         stargazers_count,
         circleColor,
-        issues_url,
+        owner,
+        repo
       }, idx) => (
         <Fragment key={id}>
           <Repository
@@ -41,7 +46,8 @@ function RepositoriesContainer() {
             language={language}
             stargazers_count={stargazers_count}
             circleColor={circleColor}
-            issues_url={issues_url}
+            owner={owner}
+            repo={repo}
             handleClick={addBookMark}
           />
           <InfinityScroll
