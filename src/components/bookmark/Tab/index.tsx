@@ -8,9 +8,10 @@ interface Props extends StyleProps {
   id: number;
   fullName: string;
   handleNavigate: (id: number) => void;
+  handleDelete: (id: number) => void;
 }
 
-const Button = styled.button<StyleProps>`
+const TabButton = styled.button<StyleProps>`
   margin: auto;
   border: none;
   background-color: transparent;
@@ -22,19 +23,38 @@ const Button = styled.button<StyleProps>`
   cursor: ${(props) => (props.selected ? '' : 'pointer')};
 `;
 
+const DeleteButton = styled.button`
+  border: none;
+  background-color: transparent;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+`;
+
 export default function Tab({
   id,
   fullName,
   selected,
   handleNavigate,
+  handleDelete,
 }: Props) {
   return (
-    <Button
-      selected={selected}
-      onClick={() => handleNavigate(id)}
-      disabled={selected}
-    >
-      {fullName}
-    </Button>
+    <>
+      <TabButton
+        selected={selected}
+        onClick={() => handleNavigate(id)}
+        disabled={selected}
+      >
+        {fullName}
+      </TabButton>
+      <DeleteButton
+        type="button"
+        onClick={() => handleDelete(Number(id))}
+      >
+        x
+      </DeleteButton>
+    </>
   );
 }
