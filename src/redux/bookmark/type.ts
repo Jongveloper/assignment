@@ -1,5 +1,3 @@
-import { DialogType } from "../common";
-
 import { IssuesUrlInfo, RepositoryInfo } from "../repository/type";
 
 export interface Issue {
@@ -15,7 +13,6 @@ export interface Bookmarks {
 
 export interface Bookmark {
   bookmarks: Bookmarks[] | string;
-  dialog: DialogType;
 }
 
 export interface loadIssueProps extends IssuesUrlInfo {
