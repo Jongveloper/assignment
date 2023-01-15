@@ -18,10 +18,10 @@ class ValidationError extends Error {
   }
 }
 
-export const getIssue = async ({ owner, repo }: IssuesUrlInfo) => {
+export const getIssue = async ({ owner, repo, page }: IssuesUrlInfo) => {
   const baseURL = import.meta.env.VITE_APP_API_URL;
   try {
-    const data = await axios.get(`${baseURL}/repos/${owner}/${repo}/issues`);
+    const data = await axios.get(`${baseURL}/repos/${owner}/${repo}/issues?per_page=10&page=${page}`);
 
     return data;
   } catch (error) {
