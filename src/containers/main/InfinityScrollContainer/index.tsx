@@ -14,9 +14,12 @@ function InfinityScroll({
   const isLast = index === length - 1;
 
   useEffect(() => {
-    const options = { threshold: 1, root: null, rootMargin: '0.5px' };
+    const options = { threshold: 1, root: null, rootMargin: '2px' };
 
-    const infiniteScroll = async ([entries] : any, observer: IntersectionObserver) => {
+    const infiniteScroll = async (
+      [entries] : IntersectionObserverEntry[],
+      observer: IntersectionObserver,
+    ) => {
       if (entries.isIntersecting) {
         next();
         observer.unobserve(entries.target);
