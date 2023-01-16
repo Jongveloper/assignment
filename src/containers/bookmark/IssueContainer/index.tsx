@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import InfinityScroll from '../../main/InfinityScrollContainer';
 
 const Wrap = styled.div`
-  margin-top: 100px;
+  margin-top: 12rem;
 `;
 
 export default function IssueContainer() {

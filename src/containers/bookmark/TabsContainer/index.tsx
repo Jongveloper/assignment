@@ -15,11 +15,13 @@ const Wrapper = styled.div`
   display: flex;
 
   position: fixed;
-  top: 0;
+  top: 80px;
   right: 5px;
 
   width: 100%;
   margin: auto;
+
+  border-top: 4px solid black;
   border-bottom: 4px solid black;
 
   background-color: white;

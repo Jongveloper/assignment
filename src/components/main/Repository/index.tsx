@@ -72,11 +72,10 @@ function Repository({
   language,
   stargazers_count,
   circleColor,
-  repo, 
+  repo,
   owner,
   handleClick,
 }: Props) {
-
   return (
     <CenterLayout>
       <Wrap>
@@ -95,7 +94,7 @@ function Repository({
                 language,
                 stargazers_count,
                 circleColor,
-                repo, 
+                repo,
                 owner,
               },
             })}

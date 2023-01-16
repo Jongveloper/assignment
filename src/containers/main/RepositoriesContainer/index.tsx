@@ -1,16 +1,22 @@
 import { Fragment, useCallback } from 'react';
 
+import styled from '@emotion/styled';
+
 import InfinityScroll from '../InfinityScrollContainer';
 
 import Repository from '../../../components/main/Repository';
 
-import { loadIssueProps} from '../../../redux/bookmark/type';
+import { loadIssueProps } from '../../../redux/bookmark/type';
 
 import { loadMoreRepositories } from '../../../redux/repository';
 
-import { setBookmark } from "../../../redux/bookmark";
+import { setBookmark } from '../../../redux/bookmark';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+
+const Wrap = styled.div`
+  margin-top: 12rem;
+`;
 
 function RepositoriesContainer() {
   const dispatch = useAppDispatch();
@@ -25,7 +31,7 @@ function RepositoriesContainer() {
   }, []);
 
   return (
-    <>
+    <Wrap>
       {repositories.map(({
         id,
         full_name,
@@ -35,7 +41,7 @@ function RepositoriesContainer() {
         stargazers_count,
         circleColor,
         owner,
-        repo
+        repo,
       }, idx) => (
         <Fragment key={id}>
           <Repository
@@ -58,7 +64,7 @@ function RepositoriesContainer() {
         </Fragment>
       ))}
 
-    </>
+    </Wrap>
   );
 }
 
