@@ -6,6 +6,7 @@ import { Issue } from '../../../redux/bookmark/type';
 
 interface Props extends Issue {
   repositoryName: string;
+  goToIssue: (url: string) => void;
 }
 
 const Wrap = styled.div`
@@ -16,24 +17,40 @@ const Wrap = styled.div`
   border: 3px solid black;
   border-radius: 2rem;
 
-  & > b {
-    font-size: 20px;
+  overflow: hidden;
+  
+  cursor: pointer;
+`;
 
-    text-align: right;
-  }
+const NameWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  
+  margin-bottom: 40px;
+
+  font-size: 22px;
 `;
 
 export default function IssueBox({
   user,
   title,
   body,
+  url,
   repositoryName,
+  goToIssue,
 }: Props) {
   return (
-    <Wrap>
+    <Wrap onClick={() => goToIssue(url)}>
       <h1>{repositoryName}</h1>
       <h2>{title}</h2>
-      <b>{user}</b>
+      <NameWrap>
+        <b>
+          author :
+          {' '}
+          {' '}
+          {user}
+        </b>
+      </NameWrap>
       <ReactMarkdown
         components={{
           img: ({

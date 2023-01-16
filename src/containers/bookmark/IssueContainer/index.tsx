@@ -1,10 +1,16 @@
 import { Fragment, useCallback } from 'react';
 
+import styled from '@emotion/styled';
+
 import Issue from '../../../components/bookmark/Issue';
 import { setMoreBookmarks } from '../../../redux/bookmark';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import InfinityScroll from '../../main/InfinityScrollContainer';
+
+const Wrap = styled.div`
+  margin-top: 100px;
+`;
 
 export default function IssueContainer() {
   const dispatch = useAppDispatch();
@@ -22,15 +28,26 @@ export default function IssueContainer() {
     }));
   }, [selectedBookmark, page]);
 
+  const goToIssue = useCallback((url: string) => {
+    window.open(url);
+  }, []);
+
   return (
-    <>
-      {selectedBookmark?.issues.map(({ user, title, body }, idx) => (
+    <Wrap>
+      {selectedBookmark?.issues.map(({
+        user,
+        title,
+        body,
+        url,
+      }, idx) => (
         <Fragment key={idx}>
           <Issue
             repositoryName={selectedBookmark.repository.repo}
             user={user}
             title={title}
             body={body}
+            url={url}
+            goToIssue={goToIssue}
           />
           <InfinityScroll
             index={idx}
@@ -39,6 +56,6 @@ export default function IssueContainer() {
           />
         </Fragment>
       ))}
-    </>
+    </Wrap>
   );
 }
