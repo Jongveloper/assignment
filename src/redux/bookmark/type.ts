@@ -4,6 +4,7 @@ export interface Issue {
   user: string;
   title: string;
   body: string;
+  url: string;
 }
 
 export interface Bookmark {
