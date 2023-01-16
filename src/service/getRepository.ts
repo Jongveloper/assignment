@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
 
-import { ServerError } from "./type";
+import { ServerError } from './type';
 import { RequestRepositoriesProps } from '../types/Repository';
 
-import { UnknownError } from "./commonError";
+import { UnknownError } from './commonError';
 
 class AuthorizationError extends Error {
   constructor() {
@@ -13,7 +13,7 @@ class AuthorizationError extends Error {
 
 class ValidationError extends Error {
   constructor() {
-    super('검색어를 입력해주세요.')
+    super('검색어를 입력해주세요.');
   }
 }
 

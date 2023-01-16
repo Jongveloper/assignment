@@ -23,7 +23,7 @@ export const convertRepositories = (repositories: Response[]) => repositories.ma
     stargazers_count: kFormatter(stargazers_count),
     circleColor: setCircleColor(language),
     owner: convertIssueUrl(issues_url).owner,
-    repo: convertIssueUrl(issues_url).repo
+    repo: convertIssueUrl(issues_url).repo,
   };
   return data;
 });
