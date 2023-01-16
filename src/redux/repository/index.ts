@@ -6,12 +6,18 @@ import { getRepository } from '../../service/getRepository';
 
 import { convertRepositories } from '../../utils/convertRepositories';
 
-import { Repository } from './type';
 import { RequestRepositoriesProps } from '../../types/Repository';
+import { RepositoryInfo } from './type';
 
 import { setDialog, setLoading } from '../common';
 
-export const initialState:Repository = {
+export interface RepositoryState {
+  repositories: RepositoryInfo[];
+  searchWord: string;
+  page: number;
+}
+
+export const initialState:RepositoryState = {
   repositories: [],
   searchWord: '',
   page: 0,

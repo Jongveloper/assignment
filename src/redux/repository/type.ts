@@ -15,9 +15,3 @@ export interface RepositoryInfo {
   owner: string;
   repo: string;
 }
-
-export interface Repository {
-  repositories: RepositoryInfo[];
-  searchWord: string;
-  page: number;
-}
