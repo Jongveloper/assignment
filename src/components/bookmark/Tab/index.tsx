@@ -11,6 +11,14 @@ interface Props extends StyleProps {
   handleDelete: (id: number) => void;
 }
 
+const ButtonWrap = styled.div`
+  display: flex;
+  width: 100%;
+  border-left: 4px solid black;
+
+  padding: 20px;
+`;
+
 const TabButton = styled.button<StyleProps>`
   margin: auto;
   border: none;
@@ -41,7 +49,7 @@ export default function Tab({
   handleDelete,
 }: Props) {
   return (
-    <>
+    <ButtonWrap>
       <TabButton
         selected={selected}
         onClick={() => handleNavigate(id)}
@@ -55,6 +63,6 @@ export default function Tab({
       >
         x
       </DeleteButton>
-    </>
+    </ButtonWrap>
   );
 }

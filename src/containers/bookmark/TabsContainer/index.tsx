@@ -14,8 +14,15 @@ import { selectBookmark, setRemainBookmark } from '../../../redux/bookmark';
 const Wrapper = styled.div`
   display: flex;
 
-  width: 80%;
+  position: fixed;
+  top: 0;
+  right: 5px;
+
+  width: 100%;
   margin: auto;
+  border-bottom: 4px solid black;
+
+  background-color: white;
 `;
 
 function TabsContainer() {
