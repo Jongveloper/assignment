@@ -5,9 +5,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { DialogType } from '../../../redux/common';
+import { DialogState } from '../../../redux/common/type';
 
-interface Props extends DialogType {
+interface Props extends DialogState {
   handleClose: () => void;
   handleNavigate: () => void;
 }

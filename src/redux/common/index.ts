@@ -1,18 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface DialogType {
-  isOpen: boolean;
-  status?: 'ERROR' | 'ALERT' | '';
-  message: string;
-  title: string;
-}
+import { DialogState } from './type';
 
-interface Common {
+interface CommonState {
   isLoading: boolean;
-  dialog: DialogType;
+  dialog: DialogState;
 }
 
-const initialState: Common = {
+const initialState: CommonState = {
   isLoading: false,
   dialog: {
     isOpen: false,
