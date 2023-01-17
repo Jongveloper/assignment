@@ -64,7 +64,7 @@ const LanguageCircle = styled.div<LanguageCircleProps>`
   background-color: ${(props) => props.circleColor};
 `;
 
-function Repository({
+const Repository = ({
   id,
   fullName,
   updatedAt,
@@ -75,38 +75,37 @@ function Repository({
   repo,
   owner,
   handleClick,
-}: RepositoryProps) {
-  return (
-    <CenterLayout>
-      <Wrap>
-        <div>
-          <b>{fullName}</b>
-          <button
-            type="button"
-            onClick={() => handleClick({
+}: RepositoryProps) => (
+  <CenterLayout>
+    <Wrap>
+      <div>
+        <b>{fullName}</b>
+        <button
+          type="button"
+          onClick={() => handleClick({
+            repo,
+            owner,
+            repository: {
+              id,
+              fullName,
+              updatedAt,
+              description,
+              language,
+              stargazersCount,
+              circleColor,
               repo,
               owner,
-              repository: {
-                id,
-                fullName,
-                updatedAt,
-                description,
-                language,
-                stargazersCount,
-                circleColor,
-                repo,
-                owner,
-              },
-            })}
-          >
-            <AddCircleOutlineOutlinedIcon />
-          </button>
-        </div>
-        <p>{description}</p>
-        <RepositoryInfoWrap>
-          <StarBorder />
-          <p>{stargazersCount}</p>
-          {language
+            },
+          })}
+        >
+          <AddCircleOutlineOutlinedIcon />
+        </button>
+      </div>
+      <p>{description}</p>
+      <RepositoryInfoWrap>
+        <StarBorder />
+        <p>{stargazersCount}</p>
+        {language
           && (
           <>
             <LanguageCircle
@@ -115,15 +114,14 @@ function Repository({
             <p>{language}</p>
           </>
           )}
-          <p>
-            Updated on
-            {' '}
-            {updatedAt}
-          </p>
-        </RepositoryInfoWrap>
-      </Wrap>
-    </CenterLayout>
-  );
-}
+        <p>
+          Updated on
+          {' '}
+          {updatedAt}
+        </p>
+      </RepositoryInfoWrap>
+    </Wrap>
+  </CenterLayout>
+);
 
 export default Repository;

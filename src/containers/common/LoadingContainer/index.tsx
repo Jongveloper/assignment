@@ -2,7 +2,7 @@ import Loading from '../../../components/common/Loading';
 
 import { useAppSelector } from '../../../redux/store';
 
-function LoadingContainer() {
+const LoadingContainer = () => {
   const { isLoading } = useAppSelector((state) => state.common);
 
   return (
@@ -10,6 +10,6 @@ function LoadingContainer() {
       {isLoading && <Loading />}
     </>
   );
-}
+};
 
 export default LoadingContainer;

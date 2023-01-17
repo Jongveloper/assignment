@@ -7,9 +7,9 @@ interface Props {
   index: number;
 }
 
-function InfinityScroll({
+const InfinityScroll = ({
   length, children, next, index,
-}: Props) {
+}: Props) => {
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const isLast = index === length - 1;
 
@@ -32,6 +32,6 @@ function InfinityScroll({
   }, [target]);
 
   return <div ref={isLast ? setTarget : null}>{children}</div>;
-}
+};
 
 export default InfinityScroll;

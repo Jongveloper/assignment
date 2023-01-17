@@ -31,41 +31,41 @@ const NameWrap = styled.div`
   font-size: 22px;
 `;
 
-export default function IssueCard({
+const IssueCard = ({
   user,
   title,
   body,
   url,
   repositoryName,
   goToIssue,
-}: IssueCardProps) {
-  return (
-    <Wrap onClick={() => goToIssue(url)}>
-      <h1>{repositoryName}</h1>
-      <h2>{title}</h2>
-      <NameWrap>
-        <b>
-          author :
-          {' '}
-          {' '}
-          {user}
-        </b>
-      </NameWrap>
-      <ReactMarkdown
-        components={{
-          img: ({
-            node, ...props
-          }) => (
-            <img
-              style={{ maxWidth: '100%' }}
-              {...props}
-              alt="issueImage"
-            />
-          ),
-        }}
-      >
-        {body}
-      </ReactMarkdown>
-    </Wrap>
-  );
-}
+}: IssueCardProps) => (
+  <Wrap onClick={() => goToIssue(url)}>
+    <h1>{repositoryName}</h1>
+    <h2>{title}</h2>
+    <NameWrap>
+      <b>
+        author :
+        {' '}
+        {' '}
+        {user}
+      </b>
+    </NameWrap>
+    <ReactMarkdown
+      components={{
+        img: ({
+          node, ...props
+        }) => (
+          <img
+            style={{ maxWidth: '100%' }}
+            {...props}
+            alt="issueImage"
+          />
+        ),
+      }}
+    >
+      {body}
+    </ReactMarkdown>
+  </Wrap>
+);
+
+export default IssueCard;

@@ -8,7 +8,7 @@ import { closeDialog } from '../../../redux/common';
 
 import { setInitialRepositoryId } from '../../../utils/setInitialRepositoryId';
 
-function DialogContainer() {
+const DialogContainer = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -40,6 +40,6 @@ function DialogContainer() {
       handleNavigate={handleNavigate}
     />
   );
-}
+};
 
 export default DialogContainer;

@@ -21,19 +21,17 @@ const StyledBox = styled(Box)<StyledBoxProps>`
   margin-top: ${(props) => props.marginTop};
 `;
 
-function CenterLayout({
+const CenterLayout = ({
   children,
   marginTop = '40px',
   width = '80%',
-} : Props) {
-  return (
-    <StyledBox
-      marginTop={marginTop}
-      width={width}
-    >
-      {children}
-    </StyledBox>
-  );
-}
+} : Props) => (
+  <StyledBox
+    marginTop={marginTop}
+    width={width}
+  >
+    {children}
+  </StyledBox>
+);
 
 export default CenterLayout;

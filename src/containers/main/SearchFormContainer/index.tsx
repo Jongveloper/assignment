@@ -5,7 +5,7 @@ import SearchForm from '../../../components/main/SearchForm';
 import { setSearchWord, loadRepositories } from '../../../redux/repository';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
-function FormContainer() {
+const FormContainer = () => {
   const dispatch = useAppDispatch();
 
   const { searchWord } = useAppSelector((state) => state.repository);
@@ -29,6 +29,6 @@ function FormContainer() {
       />
     </>
   );
-}
+};
 
 export default FormContainer;

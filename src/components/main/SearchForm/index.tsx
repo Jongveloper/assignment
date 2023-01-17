@@ -38,23 +38,23 @@ const SearchButton = styled(Button)`
   background-color: black;
 `;
 
-export default function SearchForm({
+const SearchForm = ({
   searchWord,
   handleChange,
   onSubmit,
-} : SearchFormProps) {
-  return (
-    <>
-      <RepositorySearchForm onSubmit={onSubmit}>
-        <SearchBox>
-          <SearchInput
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-            value={searchWord}
-            placeholder="검색하고 싶은 레포지토리를 입력해주세요"
-          />
-          <SearchButton type="submit" variant="contained">검색</SearchButton>
-        </SearchBox>
-      </RepositorySearchForm>
-    </>
-  );
-}
+} : SearchFormProps) => (
+  <>
+    <RepositorySearchForm onSubmit={onSubmit}>
+      <SearchBox>
+        <SearchInput
+          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          value={searchWord}
+          placeholder="검색하고 싶은 레포지토리를 입력해주세요"
+        />
+        <SearchButton type="submit" variant="contained">검색</SearchButton>
+      </SearchBox>
+    </RepositorySearchForm>
+  </>
+);
+
+export default SearchForm;

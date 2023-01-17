@@ -5,7 +5,7 @@ import NoContents from '../../../components/bookmark/NoContents';
 
 import { useAppSelector } from '../../../redux/store';
 
-export default function NoContentsContainer() {
+const NoContentsContainer = () => {
   const navigate = useNavigate();
 
   const { bookmarks } = useAppSelector((state) => state.bookmark);
@@ -13,9 +13,12 @@ export default function NoContentsContainer() {
   const goHome = useCallback(() => {
     navigate('/');
   }, []);
+
   return (
     <>
       {!bookmarks.length && <NoContents handleNavigate={goHome} />}
     </>
   );
-}
+};
+
+export default NoContentsContainer;

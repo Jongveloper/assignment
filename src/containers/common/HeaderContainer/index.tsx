@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/common/Header';
 import { useAppSelector } from '../../../redux/store';
 
-export default function HeaderContainer() {
+const HeaderContainer = () => {
   const navigate = useNavigate();
 
   const { bookmarks } = useAppSelector((state) => state.bookmark);
@@ -18,4 +18,6 @@ export default function HeaderContainer() {
       bookmarkAmount={bookmarks.length}
     />
   );
-}
+};
+
+export default HeaderContainer;

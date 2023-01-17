@@ -18,7 +18,7 @@ const Wrap = styled.div`
   margin-top: 12rem;
 `;
 
-function RepositoriesContainer() {
+const RepositoriesContainer = () => {
   const dispatch = useAppDispatch();
   const { repositories, page, searchWord } = useAppSelector((state) => state.repository);
 
@@ -70,6 +70,6 @@ function RepositoriesContainer() {
 
     </Wrap>
   );
-}
+};
 
 export default RepositoriesContainer;

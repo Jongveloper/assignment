@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
-function TabsContainer() {
+const TabsContainer = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -71,6 +71,6 @@ function TabsContainer() {
       ))}
     </Wrapper>
   );
-}
+};
 
 export default TabsContainer;

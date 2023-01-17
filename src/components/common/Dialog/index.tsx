@@ -12,37 +12,37 @@ interface DialogProps extends DialogState {
   handleNavigate: () => void;
 }
 
-export default function CommonDialog({
+const CommonDialog = ({
   isOpen,
   message,
   title,
   status,
   handleClose,
   handleNavigate,
-}: DialogProps) {
-  return (
-    <div>
-      <Dialog
-        open={isOpen}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {title}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {message}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          {status === 'ALERT' && <Button onClick={handleNavigate}>북마크 보러가기</Button>}
-          <Button onClick={handleClose} autoFocus>
-            닫기
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
+}: DialogProps) => (
+  <div>
+    <Dialog
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {title}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {message}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {status === 'ALERT' && <Button onClick={handleNavigate}>북마크 보러가기</Button>}
+        <Button onClick={handleClose} autoFocus>
+          닫기
+        </Button>
+      </DialogActions>
+    </Dialog>
+  </div>
+);
+
+export default CommonDialog;

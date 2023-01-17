@@ -52,21 +52,21 @@ const StyledBookmarkIcon = styled(BookmarkIcon)`
   cursor: pointer;
 `;
 
-export default function Header({ bookmarkAmount, handleNavigate } :HeaderProps) {
-  return (
-    <Wrapper>
-      <h1 onClick={() => handleNavigate({ path: '/' })}>
-        깃허브 이슈 정리
-      </h1>
-      <BookmarkInfoWrap>
-        <BookmarkCount>
-          {bookmarkAmount}
-        </BookmarkCount>
-        <StyledBookmarkIcon
-          data-testid="bookmarkSvg"
-          onClick={() => handleNavigate({ path: '/bookmark' })}
-        />
-      </BookmarkInfoWrap>
-    </Wrapper>
-  );
-}
+const Header = ({ bookmarkAmount, handleNavigate } :HeaderProps) => (
+  <Wrapper>
+    <h1 onClick={() => handleNavigate({ path: '/' })}>
+      깃허브 이슈 정리
+    </h1>
+    <BookmarkInfoWrap>
+      <BookmarkCount>
+        {bookmarkAmount}
+      </BookmarkCount>
+      <StyledBookmarkIcon
+        data-testid="bookmarkSvg"
+        onClick={() => handleNavigate({ path: '/bookmark' })}
+      />
+    </BookmarkInfoWrap>
+  </Wrapper>
+);
+
+export default Header;

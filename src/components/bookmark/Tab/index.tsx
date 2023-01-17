@@ -41,28 +41,28 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-export default function Tab({
+const Tab = ({
   id,
   fullName,
   selected,
   handleNavigate,
   handleDelete,
-}: TabProps) {
-  return (
-    <ButtonWrap>
-      <TabButton
-        selected={selected}
-        onClick={() => handleNavigate(id)}
-        disabled={selected}
-      >
-        {fullName}
-      </TabButton>
-      <DeleteButton
-        type="button"
-        onClick={() => handleDelete(Number(id))}
-      >
-        x
-      </DeleteButton>
-    </ButtonWrap>
-  );
-}
+}: TabProps) => (
+  <ButtonWrap>
+    <TabButton
+      selected={selected}
+      onClick={() => handleNavigate(id)}
+      disabled={selected}
+    >
+      {fullName}
+    </TabButton>
+    <DeleteButton
+      type="button"
+      onClick={() => handleDelete(Number(id))}
+    >
+      x
+    </DeleteButton>
+  </ButtonWrap>
+);
+
+export default Tab;

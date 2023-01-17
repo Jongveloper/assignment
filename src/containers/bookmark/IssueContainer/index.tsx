@@ -13,7 +13,7 @@ const Wrap = styled.div`
   margin-top: 12rem;
 `;
 
-export default function IssueContainer() {
+const IssueContainer = () => {
   const dispatch = useAppDispatch();
   const {
     selectedBookmark,
@@ -59,4 +59,6 @@ export default function IssueContainer() {
       ))}
     </Wrap>
   );
-}
+};
+
+export default IssueContainer;

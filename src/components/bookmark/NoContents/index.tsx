@@ -23,20 +23,20 @@ const NavigateButton = styled(Button)`
   }
 `;
 
-export default function NoContents({
+const NoContents = ({
   handleNavigate,
-}:{handleNavigate : () => void}) {
-  return (
-    <Wrap>
-      <div>
-        <h1>북마크에 저장된게 없어요!</h1>
-        <NavigateButton
-          variant="contained"
-          onClick={handleNavigate}
-        >
-          검색하러 가기
-        </NavigateButton>
-      </div>
-    </Wrap>
-  );
-}
+}:{handleNavigate : () => void}) => (
+  <Wrap>
+    <div>
+      <h1>북마크에 저장된게 없어요!</h1>
+      <NavigateButton
+        variant="contained"
+        onClick={handleNavigate}
+      >
+        검색하러 가기
+      </NavigateButton>
+    </div>
+  </Wrap>
+);
+
+export default NoContents;
