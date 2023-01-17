@@ -2,7 +2,8 @@ import { Fragment, useCallback } from 'react';
 
 import styled from '@emotion/styled';
 
-import Issue from '../../../components/bookmark/Issue';
+import IssueCard from '../../../components/bookmark/IssueCard';
+
 import { setMoreBookmarks } from '../../../redux/bookmark';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
@@ -41,7 +42,7 @@ export default function IssueContainer() {
         url,
       }, idx) => (
         <Fragment key={idx}>
-          <Issue
+          <IssueCard
             repositoryName={selectedBookmark.repository.repo}
             user={user}
             title={title}

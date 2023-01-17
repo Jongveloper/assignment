@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { Issue } from '../../../redux/bookmark/type';
 
-interface Props extends Issue {
+interface IssueCardProps extends Issue {
   repositoryName: string;
   goToIssue: (url: string) => void;
 }
@@ -31,14 +31,14 @@ const NameWrap = styled.div`
   font-size: 22px;
 `;
 
-export default function IssueBox({
+export default function IssueCard({
   user,
   title,
   body,
   url,
   repositoryName,
   goToIssue,
-}: Props) {
+}: IssueCardProps) {
   return (
     <Wrap onClick={() => goToIssue(url)}>
       <h1>{repositoryName}</h1>
