@@ -117,6 +117,17 @@ export const setBookmark = ({
   try {
     const responseIssues = await getIssue({ owner, repo, page: 1 });
 
+    if (!responseIssues.length) {
+      dispatch(setDialog({
+        isOpen: true,
+        status: 'ERROR',
+        message: '레포지토리에 이슈가 없습니다.',
+        title: '북마크 저장에 실패했습니다.',
+      }));
+
+      return;
+    }
+
     dispatch(saveBookmarks({ issues: responseIssues, repository }));
 
     localStorageSetBookmark(responseIssues, repository);
