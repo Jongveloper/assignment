@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-interface StyleProps{
+interface TabButtonProps{
   selected: boolean;
 }
 
-interface Props extends StyleProps {
+interface Props extends TabButtonProps {
   id: number;
   fullName: string;
   handleNavigate: (id: number) => void;
@@ -19,7 +19,7 @@ const ButtonWrap = styled.div`
   padding: 20px;
 `;
 
-const TabButton = styled.button<StyleProps>`
+const TabButton = styled.button<TabButtonProps>`
   margin: auto;
   border: none;
   background-color: transparent;

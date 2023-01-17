@@ -4,16 +4,16 @@ import styled from '@emotion/styled';
 
 import Box from '@mui/material/Box';
 
-interface StyleProps {
+interface StyledBoxProps {
   marginTop?: string;
   width?: string;
 }
 
-interface Props extends StyleProps {
+interface Props extends StyledBoxProps {
   children: ReactNode;
 }
 
-const StyledBox = styled(Box)<StyleProps>`
+const StyledBox = styled(Box)<StyledBoxProps>`
   display: flex;
   justify-content: center;
 
