@@ -7,7 +7,7 @@ interface CommonState {
   dialog: DialogState;
 }
 
-const initialState: CommonState = {
+export const initialState: CommonState = {
   isLoading: false,
   dialog: {
     isOpen: false,

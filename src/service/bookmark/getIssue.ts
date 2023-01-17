@@ -11,9 +11,8 @@ import { ServerError } from '../type';
 import { NotFound, ValidationError } from './getIssueError';
 
 export const getIssue = async ({ owner, repo, page }: IssuesUrlInfo) => {
-  const baseURL = import.meta.env.VITE_APP_API_URL;
   try {
-    const data = await axios.get(`${baseURL}/repos/${owner}/${repo}/issues?per_page=10&page=${page}`);
+    const data = await axios.get(`${process.env.VITE_APP_API_URL}/repos/${owner}/${repo}/issues?per_page=10&page=${page}`);
 
     return convertIssue(data.data);
   } catch (error) {

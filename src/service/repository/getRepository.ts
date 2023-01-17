@@ -15,11 +15,10 @@ import {
 export const getRepository = async (
   { repository, page } : RequestRepositoriesProps,
 ) => {
-  const baseURL = import.meta.env.VITE_APP_API_URL;
   try {
-    const data = await axios.get(`${baseURL}/search/repositories?q=${repository}&sort=starts&order=desc&per_page=10&page=${page}`, {
+    const data = await axios.get(`${process.env.VITE_APP_API_URL}/search/repositories?q=${repository}&sort=starts&order=desc&per_page=10&page=${page}`, {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_APP_GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.VITE_APP_GITHUB_TOKEN}`,
       },
     });
 
