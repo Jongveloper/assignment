@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { Button, TextField } from '@mui/material';
 
-interface Props {
+interface SearchFormProps {
   searchWord: string;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
@@ -38,11 +38,11 @@ const SearchButton = styled(Button)`
   background-color: black;
 `;
 
-function Form({
+export default function SearchForm({
   searchWord,
   handleChange,
   onSubmit,
-} : Props) {
+} : SearchFormProps) {
   return (
     <>
       <RepositorySearchForm onSubmit={onSubmit}>
@@ -58,5 +58,3 @@ function Form({
     </>
   );
 }
-
-export default Form;
