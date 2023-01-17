@@ -10,6 +10,7 @@ import Tab from '../../../components/bookmark/Tab';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { selectBookmark, setRemainBookmark } from '../../../redux/bookmark';
+import { setInitialRepositoryId } from '../../../utils/setInitialRepositoryId';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,6 +45,16 @@ function TabsContainer() {
   }, []);
 
   useEffect(() => {
+    if (!bookmarks.length) {
+      return;
+    }
+
+    if (repositoryId === undefined) {
+      dispatch(selectBookmark(setInitialRepositoryId()));
+
+      return;
+    }
+
     dispatch(selectBookmark(Number(repositoryId)));
   }, [repositoryId]);
 
