@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
+import { convertRepositories } from '../utils/convertRepositories';
+
 import { ServerError } from './type';
 import { RequestRepositoriesProps } from '../types/Repository';
 
@@ -23,7 +25,9 @@ class ServiceError extends Error {
   }
 }
 
-export const getRepository = async ({ repository, page } : RequestRepositoriesProps) => {
+export const getRepository = async (
+  { repository, page } : RequestRepositoriesProps,
+) => {
   const baseURL = import.meta.env.VITE_APP_API_URL;
   try {
     const data = await axios.get(`${baseURL}/search/repositories?q=${repository}&sort=starts&order=desc&per_page=10&page=${page}`, {
@@ -32,7 +36,7 @@ export const getRepository = async ({ repository, page } : RequestRepositoriesPr
       },
     });
 
-    return data;
+    return convertRepositories(data.data.items);
   } catch (error) {
     const status = (error as AxiosError<ServerError>).response?.status;
 

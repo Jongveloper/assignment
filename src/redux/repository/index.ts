@@ -4,8 +4,6 @@ import { AppDispatch } from '../store';
 
 import { getRepository } from '../../service/getRepository';
 
-import { convertRepositories } from '../../utils/convertRepositories';
-
 import { RequestRepositoriesProps } from '../../types/Repository';
 import { RepositoryInfo } from './type';
 
@@ -31,22 +29,16 @@ const { actions, reducer } = createSlice({
       ...state,
       searchWord: payload,
     }),
-    saveRepositories: (state, { payload }) => {
-      const filteredRepositories = convertRepositories(payload);
-      return {
-        ...state,
-        repositories: filteredRepositories,
-        page: 2,
-      };
-    },
-    saveMoreRepositories: (state, { payload }) => {
-      const filteredRepositories = convertRepositories(payload);
-      return {
-        ...state,
-        repositories: [...state.repositories, ...filteredRepositories],
-        page: state.page + 1,
-      };
-    },
+    saveRepositories: (state, { payload }) => ({
+      ...state,
+      repositories: payload,
+      page: 2,
+    }),
+    saveMoreRepositories: (state, { payload }) => ({
+      ...state,
+      repositories: [...state.repositories, ...payload],
+      page: state.page + 1,
+    }),
     cleanRepositories: (state) => ({
       ...state,
       repositories: [],
@@ -68,9 +60,9 @@ export const loadRepositories = ({ repository, page } :
   RequestRepositoriesProps) => async (dispatch: AppDispatch) => {
   dispatch(setLoading(true));
   try {
-    const { data: { items } } = await getRepository({ repository, page });
+    const repositories = await getRepository({ repository, page });
 
-    dispatch(saveRepositories(items));
+    dispatch(saveRepositories(repositories));
 
     dispatch(setLoading(false));
   } catch (error) {
@@ -91,9 +83,9 @@ export const loadMoreRepositories = ({ repository, page } :
   RequestRepositoriesProps) => async (dispatch: AppDispatch) => {
   dispatch(setLoading(true));
   try {
-    const { data: { items } } = await getRepository({ repository, page });
+    const repositories = await getRepository({ repository, page });
 
-    dispatch(saveMoreRepositories(items));
+    dispatch(saveMoreRepositories(repositories));
 
     dispatch(setLoading(false));
   } catch (error) {
