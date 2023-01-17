@@ -115,13 +115,11 @@ export const setBookmark = ({
   }
 
   try {
-    const { data } = await getIssue({ owner, repo, page: 1 });
+    const responseIssues = await getIssue({ owner, repo, page: 1 });
 
-    const filteredIssue = convertIssue(data);
+    dispatch(saveBookmarks({ issues: responseIssues, repository }));
 
-    dispatch(saveBookmarks({ issues: filteredIssue, repository }));
-
-    localStorageSetBookmark(filteredIssue, repository);
+    localStorageSetBookmark(responseIssues, repository);
 
     dispatch(setDialog({
       isOpen: true,
@@ -150,11 +148,11 @@ export const setMoreBookmarks = ({
   const { bookmark: { bookmarks, selectedBookmark } } = getState();
   dispatch(setLoading(true));
   try {
-    const { data } = await getIssue({ owner, repo, page });
+    const responseIssues = await getIssue({ owner, repo, page });
 
     const transitionBookmarks = bookmarks.map((bookmark) => {
       if (bookmark.repository.id === repository.id) {
-        return { repository, issues: [...bookmark.issues, ...convertIssue(data)] };
+        return { repository, issues: [...bookmark.issues, ...responseIssues] };
       }
 
       return bookmark;
@@ -162,7 +160,7 @@ export const setMoreBookmarks = ({
 
     const transitionSelectedBookmark = {
       repository,
-      issues: [...selectedBookmark!.issues, ...convertIssue(data)],
+      issues: [...selectedBookmark!.issues, ...responseIssues],
     };
 
     localStorage.removeItem('bookmark');

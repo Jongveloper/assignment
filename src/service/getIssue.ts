@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
+import { convertIssue } from '../utils/convertIssue';
+
 import { IssuesUrlInfo } from '../redux/repository/type';
 
 import { UnknownError } from './commonError';
@@ -23,7 +25,7 @@ export const getIssue = async ({ owner, repo, page }: IssuesUrlInfo) => {
   try {
     const data = await axios.get(`${baseURL}/repos/${owner}/${repo}/issues?per_page=10&page=${page}`);
 
-    return data;
+    return convertIssue(data.data);
   } catch (error) {
     const status = (error as AxiosError<ServerError>).response?.status;
 
