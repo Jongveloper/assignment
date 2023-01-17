@@ -4,8 +4,6 @@ import styled from '@emotion/styled';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import NoContentsContainer from '../NoContentsContainer';
-
 import Tab from '../../../components/bookmark/Tab';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
@@ -60,7 +58,7 @@ function TabsContainer() {
 
   return (
     <Wrapper>
-      {bookmarks.length ? bookmarks.map(({ repository: { id, full_name } }) => (
+      {bookmarks.map(({ repository: { id, full_name } }) => (
         <Fragment key={id}>
           <Tab
             id={id}
@@ -70,7 +68,7 @@ function TabsContainer() {
             handleDelete={deleteBookmark}
           />
         </Fragment>
-      )) : <NoContentsContainer />}
+      ))}
     </Wrapper>
   );
 }
