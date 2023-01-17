@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { AppDispatch } from '../store';
 
-import { getRepository } from '../../service/getRepository';
+import { getRepository } from '../../service/repository/getRepository';
 
 import { RequestRepositoriesProps } from '../../types/Repository';
 import { RepositoryInfo } from './type';

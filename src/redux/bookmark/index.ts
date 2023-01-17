@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getIssue } from '../../service/getIssue';
+import { getIssue } from '../../service/bookmark/getIssue';
 
 import { convertIssue } from '../../utils/convertIssue';
 import { alreadyExistsIn } from '../../utils/alreadyExistsIn';
