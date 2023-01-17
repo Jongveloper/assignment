@@ -4,7 +4,7 @@ import CenterLayout from '../CenterLayout';
 
 const Loading = () => (
   <CenterLayout>
-    <CircularProgress />
+    <CircularProgress data-testid="CircularProgress" />
   </CenterLayout>
 );
 
