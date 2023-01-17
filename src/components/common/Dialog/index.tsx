@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { DialogState } from '../../../redux/common/type';
 
-interface Props extends DialogState {
+interface DialogProps extends DialogState {
   handleClose: () => void;
   handleNavigate: () => void;
 }
@@ -19,7 +19,7 @@ export default function CommonDialog({
   status,
   handleClose,
   handleNavigate,
-}: Props) {
+}: DialogProps) {
   return (
     <div>
       <Dialog

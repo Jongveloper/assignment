@@ -4,7 +4,7 @@ interface TabButtonProps{
   selected: boolean;
 }
 
-interface Props extends TabButtonProps {
+interface TabProps extends TabButtonProps {
   id: number;
   fullName: string;
   handleNavigate: (id: number) => void;
@@ -47,7 +47,7 @@ export default function Tab({
   selected,
   handleNavigate,
   handleDelete,
-}: Props) {
+}: TabProps) {
   return (
     <ButtonWrap>
       <TabButton

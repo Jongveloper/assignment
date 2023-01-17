@@ -12,7 +12,7 @@ interface LanguageCircleProps {
   circleColor: string;
 }
 
-interface Props extends RepositoryInfo {
+interface RepositoryProps extends RepositoryInfo {
   handleClick: ({ repo, owner, repository } : loadIssueProps) => void;
 }
 
@@ -75,7 +75,7 @@ function Repository({
   repo,
   owner,
   handleClick,
-}: Props) {
+}: RepositoryProps) {
   return (
     <CenterLayout>
       <Wrap>

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-interface Props {
+interface HeaderProps {
   bookmarkAmount: number;
   handleNavigate: ({ path } : {path: string}) => void;
 }
@@ -52,7 +52,7 @@ const StyledBookmarkIcon = styled(BookmarkIcon)`
   cursor: pointer;
 `;
 
-export default function Header({ bookmarkAmount, handleNavigate } :Props) {
+export default function Header({ bookmarkAmount, handleNavigate } :HeaderProps) {
   return (
     <Wrapper>
       <h1 onClick={() => handleNavigate({ path: '/' })}>
