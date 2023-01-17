@@ -6,11 +6,11 @@ export interface IssuesUrlInfo {
 
 export interface RepositoryInfo {
   id: number;
-  full_name: string;
-  updated_at: string;
+  fullName: string;
+  updatedAt: string;
   description: string;
   language?: string;
-  stargazers_count?: number | string;
+  stargazersCount?: number | string;
   circleColor: string;
   owner: string;
   repo: string;

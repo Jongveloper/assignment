@@ -58,12 +58,12 @@ function TabsContainer() {
 
   return (
     <Wrapper>
-      {bookmarks.map(({ repository: { id, full_name } }) => (
+      {bookmarks.map(({ repository: { id, fullName } }) => (
         <Fragment key={id}>
           <Tab
             id={id}
             selected={selectedBookmark?.repository.id === id}
-            fullName={full_name}
+            fullName={fullName}
             handleNavigate={TabHandler}
             handleDelete={deleteBookmark}
           />

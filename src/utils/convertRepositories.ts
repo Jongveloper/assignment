@@ -16,11 +16,11 @@ export const convertRepositories = (repositories: Response[]) => repositories.ma
 } : Response) => {
   const data = {
     id,
-    full_name,
-    updated_at: convertDateFormat(updated_at),
+    fullName: full_name,
+    updatedAt: convertDateFormat(updated_at),
     description,
     language,
-    stargazers_count: kFormatter(stargazers_count),
+    stargazersCount: kFormatter(stargazers_count),
     circleColor: setCircleColor(language),
     owner: convertIssueUrl(issues_url).owner,
     repo: convertIssueUrl(issues_url).repo,

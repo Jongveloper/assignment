@@ -38,11 +38,11 @@ function RepositoriesContainer() {
     <Wrap>
       {repositories.map(({
         id,
-        full_name,
-        updated_at,
+        fullName,
+        updatedAt,
         description,
         language,
-        stargazers_count,
+        stargazersCount,
         circleColor,
         owner,
         repo,
@@ -50,11 +50,11 @@ function RepositoriesContainer() {
         <Fragment key={id}>
           <Repository
             id={id}
-            full_name={full_name}
-            updated_at={updated_at}
+            fullName={fullName}
+            updatedAt={updatedAt}
             description={description}
             language={language}
-            stargazers_count={stargazers_count}
+            stargazersCount={stargazersCount}
             circleColor={circleColor}
             owner={owner}
             repo={repo}

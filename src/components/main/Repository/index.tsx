@@ -66,11 +66,11 @@ const LanguageCircle = styled.div<LanguageCircleProps>`
 
 function Repository({
   id,
-  full_name,
-  updated_at,
+  fullName,
+  updatedAt,
   description,
   language,
-  stargazers_count,
+  stargazersCount,
   circleColor,
   repo,
   owner,
@@ -80,7 +80,7 @@ function Repository({
     <CenterLayout>
       <Wrap>
         <div>
-          <b>{full_name}</b>
+          <b>{fullName}</b>
           <button
             type="button"
             onClick={() => handleClick({
@@ -88,11 +88,11 @@ function Repository({
               owner,
               repository: {
                 id,
-                full_name,
-                updated_at,
+                fullName,
+                updatedAt,
                 description,
                 language,
-                stargazers_count,
+                stargazersCount,
                 circleColor,
                 repo,
                 owner,
@@ -105,7 +105,7 @@ function Repository({
         <p>{description}</p>
         <RepositoryInfoWrap>
           <StarBorder />
-          <p>{stargazers_count}</p>
+          <p>{stargazersCount}</p>
           {language
           && (
           <>
@@ -118,7 +118,7 @@ function Repository({
           <p>
             Updated on
             {' '}
-            {updated_at}
+            {updatedAt}
           </p>
         </RepositoryInfoWrap>
       </Wrap>
