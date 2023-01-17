@@ -7,7 +7,7 @@ interface CommonState {
   dialog: DialogState;
 }
 
-export const initialState: CommonState = {
+export const commonInitailState: CommonState = {
   isLoading: false,
   dialog: {
     isOpen: false,
@@ -18,7 +18,7 @@ export const initialState: CommonState = {
 
 const { actions, reducer } = createSlice({
   name: 'common',
-  initialState,
+  initialState: commonInitailState,
   reducers: {
     setLoading: (state, { payload }) => ({
       ...state,

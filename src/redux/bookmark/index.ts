@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getIssue } from '../../service/bookmark/getIssue';
 
-import { convertIssue } from '../../utils/convertIssue';
 import { alreadyExistsIn } from '../../utils/alreadyExistsIn';
 import { localStorageSetBookmark } from '../../utils/localStorageSetBookmark';
 
@@ -20,7 +19,7 @@ interface BookmarkState {
   page: number;
 }
 
-export const initialState: BookmarkState = {
+export const bookmarkInitialState: BookmarkState = {
   bookmarks: JSON.parse(localStorage.getItem('bookmark') as string) ?? [],
   selectedBookmark: undefined,
   page: 2,
@@ -28,7 +27,7 @@ export const initialState: BookmarkState = {
 
 const { actions, reducer } = createSlice({
   name: 'bookmark',
-  initialState,
+  initialState: bookmarkInitialState,
   reducers: {
     saveBookmarks: (state, { payload: bookmark }) => ({
       ...state,

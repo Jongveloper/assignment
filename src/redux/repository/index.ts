@@ -15,7 +15,7 @@ export interface RepositoryState {
   page: number;
 }
 
-export const initialState:RepositoryState = {
+export const repositoryInitialState:RepositoryState = {
   repositories: [],
   searchWord: '',
   page: 0,
@@ -23,7 +23,7 @@ export const initialState:RepositoryState = {
 
 const { actions, reducer } = createSlice({
   name: 'repository',
-  initialState,
+  initialState: repositoryInitialState,
   reducers: {
     setSearchWord: (state, { payload }) => ({
       ...state,
