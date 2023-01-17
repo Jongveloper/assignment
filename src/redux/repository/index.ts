@@ -62,6 +62,17 @@ export const loadRepositories = ({ repository, page } :
   try {
     const repositories = await getRepository({ repository, page });
 
+    if (!repositories.length) {
+      dispatch(setDialog({
+        isOpen: true,
+        status: 'ERROR',
+        message: '다른 레포지토리를 검색해주시길 바랍니다.',
+        title: '해당하는 레포지토리가 없습니다.',
+      }));
+
+      return;
+    }
+
     dispatch(saveRepositories(repositories));
 
     dispatch(setLoading(false));
