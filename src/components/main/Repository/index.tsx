@@ -98,7 +98,7 @@ const Repository = ({
             },
           })}
         >
-          <AddCircleOutlineOutlinedIcon />
+          <AddCircleOutlineOutlinedIcon data-testid="bookmark" />
         </button>
       </div>
       <p>{description}</p>
