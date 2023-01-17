@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react';
+import { Fragment, useCallback, useEffect } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -8,7 +8,7 @@ import Repository from '../../../components/main/Repository';
 
 import { loadIssueProps } from '../../../redux/bookmark/type';
 
-import { loadMoreRepositories } from '../../../redux/repository';
+import { cleanRepositories, loadMoreRepositories } from '../../../redux/repository';
 
 import { setBookmark } from '../../../redux/bookmark';
 
@@ -28,6 +28,10 @@ function RepositoriesContainer() {
 
   const addBookMark = useCallback(({ repo, owner, repository }: loadIssueProps) => {
     dispatch(setBookmark({ repo, owner, repository }));
+  }, []);
+
+  useEffect(() => () => {
+    dispatch(cleanRepositories());
   }, []);
 
   return (

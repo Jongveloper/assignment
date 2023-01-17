@@ -47,10 +47,16 @@ const { actions, reducer } = createSlice({
         page: state.page + 1,
       };
     },
+    cleanRepositories: (state) => ({
+      ...state,
+      repositories: [],
+      searchWord: '',
+    }),
   },
 });
 
 export const {
+  cleanRepositories,
   setSearchWord,
   saveRepositories,
   saveMoreRepositories,
