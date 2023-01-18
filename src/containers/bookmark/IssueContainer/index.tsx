@@ -4,32 +4,24 @@ import styled from '@emotion/styled';
 
 import IssueCard from '../../../components/bookmark/IssueCard';
 
-import { setMoreBookmarks } from '../../../redux/bookmark';
-
+import { setMoreBookmarkIssues } from '../../../redux/bookmark';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+
 import InfinityScroll from '../../main/InfinityScrollContainer';
 
 const Wrap = styled.div`
-  margin-top: 12rem;
+  margin-top: 15rem;
 `;
 
 const IssueContainer = () => {
   const dispatch = useAppDispatch();
-  const {
-    selectedBookmark,
-    page,
-  } = useAppSelector((state) => state.bookmark);
+  const { selectedBookmark } = useAppSelector((state) => state.bookmark);
 
   const getMoreIssues = useCallback(() => {
-    dispatch(setMoreBookmarks({
-      repo: selectedBookmark?.repository.repo!,
-      owner: selectedBookmark?.repository.owner!,
-      page,
-      repository: selectedBookmark?.repository!,
-    }));
-  }, [selectedBookmark, page]);
+    dispatch(setMoreBookmarkIssues(selectedBookmark?.repository!));
+  }, [selectedBookmark]);
 
-  const goToIssue = useCallback((url: string) => {
+  const handleClickIssueCard = useCallback((url: string) => {
     window.open(url);
   }, []);
 
@@ -48,7 +40,7 @@ const IssueContainer = () => {
             title={title}
             body={body}
             url={url}
-            goToIssue={goToIssue}
+            onClickIssueCard={handleClickIssueCard}
           />
           <InfinityScroll
             index={idx}
