@@ -1,15 +1,19 @@
 import {
-  bookmark, bookmarks, maxBookmarks,
+  bookmark,
+  bookmarks,
+  maxBookmarks,
 } from '../../fixture/bookmark';
 
 import reducer, {
   saveBookmarks,
   saveMoreBookmarks,
   selectBookmark,
-  deleteBookmark,
+  remainBookmark,
   bookmarkInitialState,
   setBookmark,
   setMoreBookmarkIssues,
+  deleteSelectedBookmark,
+  setRemainBookmark,
 } from '.';
 
 import { commonInitailState } from '../common';
@@ -109,17 +113,79 @@ describe('bookmark', () => {
     });
   });
 
-  context('deleteBookmark', () => {
-    it('삭제하고 남은 북마크로 변경됩니다.', () => {
+  context('remainBookmark', () => {
+    it('bookmarks가 남은 북마크로 변경됩니다.', () => {
       const state = reducer(
         {
           ...bookmarkInitialState,
           bookmarks: maxBookmarks,
         },
-        deleteBookmark(bookmarks),
+        remainBookmark(bookmarks),
       );
 
       expect(state.bookmarks).toEqual(bookmarks);
+    });
+  });
+
+  context('deleteBookmark', () => {
+    it('selectedBookmark가 삭제됩니다.', () => {
+      const state = reducer(
+        {
+          ...bookmarkInitialState,
+          selectedBookmark: bookmark,
+        },
+        deleteSelectedBookmark(),
+      );
+      expect(state.selectedBookmark).toBe(undefined);
+    });
+  });
+
+  context('setRemainBookmark', () => {
+    context('selectedBookmark와 id가 같지 않다면', () => {
+      getState = jest.fn(() => ({
+        bookmark: {
+          ...bookmarkInitialState,
+          selectedBookmark: bookmark,
+        },
+        common: {
+          ...commonInitailState,
+        },
+        repository: {
+          ...repositoryInitialState,
+        },
+      }));
+
+      it('dispatch가 remainBookmark와 함께 호출됩니다.', () => {
+        setRemainBookmark(2)(dispatch, getState);
+
+        expect(dispatch).toBeCalledWith({
+          type: 'bookmark/remainBookmark',
+          payload: [],
+        });
+      });
+    });
+    context('selectedBookmark와 id가 같다면', () => {
+      getState = jest.fn(() => ({
+        bookmark: {
+          ...bookmarkInitialState,
+          bookmarks: maxBookmarks,
+          selectedBookmark: bookmark,
+        },
+        common: {
+          ...commonInitailState,
+        },
+        repository: {
+          ...repositoryInitialState,
+        },
+      }));
+      it('dispatch가 deleteSelectedBookmark와 함께 호출됩니다.', () => {
+        setRemainBookmark(1)(dispatch, getState);
+
+        expect(dispatch).toBeCalledWith({
+          type: 'bookmark/deleteSelectedBookmark',
+          payload: undefined,
+        });
+      });
     });
   });
 
@@ -130,6 +196,19 @@ describe('bookmark', () => {
       jest.clearAllMocks();
       (getIssue as jest.Mock).mockResolvedValue(issues);
     });
+
+    getState = jest.fn(() => ({
+      bookmark: {
+        ...bookmarkInitialState,
+        selectedBookmark: bookmark,
+      },
+      common: {
+        ...commonInitailState,
+      },
+      repository: {
+        ...repositoryInitialState,
+      },
+    }));
 
     context('요청이 실패할 때', () => {
       it('dispatch가 호출됩니다.', async () => {

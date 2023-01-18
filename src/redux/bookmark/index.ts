@@ -11,7 +11,7 @@ import { RepositoryInfo } from '../repository/type';
 
 import { AppDispatch, RootState } from '../store';
 
-import { Bookmark, loadIssueProps } from './type';
+import { Bookmark } from './type';
 
 const MAX_BOOKMARKS_SIZE = 4;
 
@@ -53,9 +53,13 @@ const { actions, reducer } = createSlice({
         selectedBookmark: bookmark,
       };
     },
-    deleteBookmark: (state, { payload: bookmarks }) => ({
+    remainBookmark: (state, { payload: bookmarks }) => ({
       ...state,
       bookmarks,
+    }),
+    deleteSelectedBookmark: (state) => ({
+      ...state,
+      selectedBookmark: undefined,
     }),
   },
 });
@@ -64,7 +68,8 @@ export const {
   saveBookmarks,
   saveMoreBookmarks,
   selectBookmark,
-  deleteBookmark,
+  remainBookmark,
+  deleteSelectedBookmark,
 } = actions;
 
 export const setRemainBookmark = (id : number) => (
@@ -74,14 +79,14 @@ export const setRemainBookmark = (id : number) => (
   const { bookmark: { bookmarks, selectedBookmark } } = getState();
 
   if (selectedBookmark?.repository.id === id) {
-    dispatch(selectBookmark([]));
+    dispatch(deleteSelectedBookmark());
   }
 
   const remainBookmarks = bookmarks.filter(({ repository }) => repository.id !== id);
 
   localStorage.removeItem('bookmark');
 
-  dispatch(deleteBookmark(remainBookmarks));
+  dispatch(remainBookmark(remainBookmarks));
 
   localStorage.setItem('bookmark', JSON.stringify(remainBookmarks));
 };
