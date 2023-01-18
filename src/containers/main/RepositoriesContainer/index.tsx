@@ -6,13 +6,12 @@ import InfinityScroll from '../InfinityScrollContainer';
 
 import Repository from '../../../components/main/Repository';
 
-import { loadIssueProps } from '../../../redux/bookmark/type';
-
 import { cleanRepositories, loadMoreRepositories } from '../../../redux/repository';
 
 import { setBookmark } from '../../../redux/bookmark';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { RepositoryInfo } from '../../../redux/repository/type';
 
 const Wrap = styled.div`
   margin-top: 12rem;
@@ -23,11 +22,11 @@ const RepositoriesContainer = () => {
   const { repositories, page, searchWord } = useAppSelector((state) => state.repository);
 
   const getMoreRepositories = useCallback(() => {
-    dispatch(loadMoreRepositories({ repository: searchWord, page }));
+    dispatch(loadMoreRepositories());
   }, [searchWord, page]);
 
-  const addBookMark = useCallback(({ repo, owner, repository }: loadIssueProps) => {
-    dispatch(setBookmark({ repo, owner, repository }));
+  const handleClickBook = useCallback((repository: RepositoryInfo) => {
+    dispatch(setBookmark(repository));
   }, []);
 
   useEffect(() => () => {
@@ -36,38 +35,19 @@ const RepositoriesContainer = () => {
 
   return (
     <Wrap>
-      {repositories.map(({
-        id,
-        fullName,
-        updatedAt,
-        description,
-        language,
-        stargazersCount,
-        circleColor,
-        owner,
-        repo,
-      }, idx) => (
-        <Fragment key={id}>
+      {repositories.map((repository, index) => (
+        <Fragment key={repository.id}>
           <Repository
-            id={id}
-            fullName={fullName}
-            updatedAt={updatedAt}
-            description={description}
-            language={language}
-            stargazersCount={stargazersCount}
-            circleColor={circleColor}
-            owner={owner}
-            repo={repo}
-            handleClick={addBookMark}
+            repository={repository}
+            onClickBookMark={handleClickBook}
           />
           <InfinityScroll
-            index={idx}
+            index={index}
             length={repositories.length}
             next={getMoreRepositories}
           />
         </Fragment>
       ))}
-
     </Wrap>
   );
 };

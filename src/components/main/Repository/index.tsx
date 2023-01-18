@@ -1,20 +1,12 @@
 import styled from '@emotion/styled';
 
 import StarBorder from '@mui/icons-material/StarBorder';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 import { RepositoryInfo } from '../../../redux/repository/type';
-import { loadIssueProps } from '../../../redux/bookmark/type';
 
 import CenterLayout from '../../common/CenterLayout';
-
-interface LanguageCircleProps {
-  circleColor: string;
-}
-
-interface RepositoryProps extends RepositoryInfo {
-  handleClick: ({ repo, owner, repository } : loadIssueProps) => void;
-}
+import Language from '../Language';
+import BookmarkButton from '../BookmarkButton';
 
 const Wrap = styled.div`
   width: 100%;
@@ -52,72 +44,33 @@ const RepositoryInfoWrap = styled.div`
   }
 `;
 
-const LanguageCircle = styled.div<LanguageCircleProps>`
-  width: 12px;
-  height: 12px;
-  margin-top: 7px;
-  margin-right: 6px;
-
-  border: 1px solid #ececec;
-
-  border-radius: 50%;
-  background-color: ${(props) => props.circleColor};
-`;
+interface Props {
+  repository: RepositoryInfo;
+  onClickBookMark(data: RepositoryInfo): void;
+}
 
 const Repository = ({
-  id,
-  fullName,
-  updatedAt,
-  description,
-  language,
-  stargazersCount,
-  circleColor,
-  repo,
-  owner,
-  handleClick,
-}: RepositoryProps) => (
+  repository,
+  onClickBookMark,
+}: Props) => (
   <CenterLayout>
     <Wrap>
       <div>
-        <b>{fullName}</b>
-        <button
-          type="button"
-          onClick={() => handleClick({
-            repo,
-            owner,
-            repository: {
-              id,
-              fullName,
-              updatedAt,
-              description,
-              language,
-              stargazersCount,
-              circleColor,
-              repo,
-              owner,
-            },
-          })}
-        >
-          <AddCircleOutlineOutlinedIcon data-testid="bookmark" />
-        </button>
+        <b>{repository.fullName}</b>
+        <BookmarkButton onClick={() => onClickBookMark(repository)} />
       </div>
-      <p>{description}</p>
+      <p>{repository.description}</p>
       <RepositoryInfoWrap>
         <StarBorder />
-        <p>{stargazersCount}</p>
-        {language
-          && (
-          <>
-            <LanguageCircle
-              circleColor={circleColor}
-            />
-            <p>{language}</p>
-          </>
-          )}
+        <p>{repository.stargazersCount}</p>
+        <Language
+          language={repository.language}
+          color={repository.circleColor}
+        />
         <p>
           Updated on
           {' '}
-          {updatedAt}
+          {repository.updatedAt}
         </p>
       </RepositoryInfoWrap>
     </Wrap>
