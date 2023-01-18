@@ -34,11 +34,11 @@ const TabsContainer = () => {
 
   const { repositoryId } = useParams();
 
-  const TabHandler = useCallback((id: number) => {
+  const handleClickTap = useCallback((id: number) => {
     navigate(`/bookmark/${id}`);
   }, []);
 
-  const deleteBookmark = useCallback((id: number) => {
+  const handleClickDelete = useCallback((id: number) => {
     dispatch(setRemainBookmark(id));
   }, []);
 
@@ -64,8 +64,8 @@ const TabsContainer = () => {
             id={id}
             selected={selectedBookmark?.repository.id === id}
             fullName={fullName}
-            handleNavigate={TabHandler}
-            handleDelete={deleteBookmark}
+            onClickTap={handleClickTap}
+            onClickDelete={handleClickDelete}
           />
         </Fragment>
       ))}
