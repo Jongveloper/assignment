@@ -3,12 +3,12 @@ import { render, fireEvent } from '@testing-library/react';
 import SearchForm from '.';
 
 describe('SearchForm', () => {
-  const handleChange = jest.fn();
+  const onChange = jest.fn();
   const onSubmit = jest.fn();
   const renderSearchForm = () => render(
     <SearchForm
       searchWord=""
-      handleChange={handleChange}
+      onChange={onChange}
       onSubmit={onSubmit}
     />,
   );
@@ -35,6 +35,6 @@ describe('SearchForm', () => {
 
     fireEvent.change(input, { target: { value: 'InputTest' } });
 
-    expect(handleChange).toBeCalled();
+    expect(onChange).toBeCalled();
   });
 });

@@ -4,12 +4,6 @@ import styled from '@emotion/styled';
 
 import { Button, TextField } from '@mui/material';
 
-interface SearchFormProps {
-  searchWord: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
-}
-
 const RepositorySearchForm = styled.form`
   position: fixed;
   top: 3.5rem;
@@ -38,23 +32,27 @@ const SearchButton = styled(Button)`
   background-color: black;
 `;
 
+interface Props {
+  searchWord: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+}
+
 const SearchForm = ({
   searchWord,
-  handleChange,
+  onChange,
   onSubmit,
-} : SearchFormProps) => (
-  <>
-    <RepositorySearchForm onSubmit={onSubmit}>
-      <SearchBox>
-        <SearchInput
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-          value={searchWord}
-          placeholder="검색하고 싶은 레포지토리를 입력해주세요"
-        />
-        <SearchButton type="submit" variant="contained">검색</SearchButton>
-      </SearchBox>
-    </RepositorySearchForm>
-  </>
+}: Props) => (
+  <RepositorySearchForm onSubmit={onSubmit}>
+    <SearchBox>
+      <SearchInput
+        onChange={onChange}
+        value={searchWord}
+        placeholder="검색하고 싶은 레포지토리를 입력해주세요"
+      />
+      <SearchButton type="submit" variant="contained">검색</SearchButton>
+    </SearchBox>
+  </RepositorySearchForm>
 );
 
 export default SearchForm;

@@ -17,17 +17,15 @@ const FormContainer = () => {
   const handleSubmitSearch = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(loadRepositories({ repository: searchWord, page: 1 }));
+    dispatch(loadRepositories());
   }, [searchWord]);
 
   return (
-    <>
-      <SearchForm
-        searchWord={searchWord}
-        handleChange={handleChangeSearchWord}
-        onSubmit={handleSubmitSearch}
-      />
-    </>
+    <SearchForm
+      searchWord={searchWord}
+      onChange={handleChangeSearchWord}
+      onSubmit={handleSubmitSearch}
+    />
   );
 };
 
