@@ -8,14 +8,14 @@ const HeaderContainer = () => {
 
   const { bookmarks } = useAppSelector((state) => state.bookmark);
 
-  const handleNavigate = ({ path }: {path: string}) => {
+  const handleClickLink = (path: string) => {
     navigate(path);
   };
 
   return (
     <Header
-      handleNavigate={handleNavigate}
-      bookmarkAmount={bookmarks.length}
+      onClickLink={handleClickLink}
+      bookmarkCount={bookmarks.length}
     />
   );
 };
