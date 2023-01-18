@@ -11,7 +11,7 @@ describe('IssueCard', () => {
       body="동작"
       url="url"
       repositoryName="테스트"
-      goToIssue={onClick}
+      onClickIssueCard={onClick}
     />,
   );
   it('IssueCard 컨텐츠가 보여집니다.', () => {
