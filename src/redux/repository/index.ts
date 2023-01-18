@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { AppDispatch } from '../store';
+import { AppDispatch, RootState } from '../store';
 
 import { getRepository } from '../../service/repository/getRepository';
 
-import { RequestRepositoriesProps } from '../../types/Repository';
 import { RepositoryInfo } from './type';
 
 import { setDialog, setLoading } from '../common';
@@ -54,13 +53,19 @@ export const {
   saveMoreRepositories,
 } = actions;
 
-export default reducer;
-
-export const loadRepositories = ({ repository, page } :
-  RequestRepositoriesProps) => async (dispatch: AppDispatch) => {
+export const loadRepositories = () => async (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => {
   dispatch(setLoading(true));
+
+  const { repository: { searchWord } } = getState();
+
   try {
-    const repositories = await getRepository({ repository, page });
+    const repositories = await getRepository({
+      repository: searchWord,
+      page: 1,
+    });
 
     if (!repositories.length) {
       dispatch(setDialog({
@@ -74,12 +79,8 @@ export const loadRepositories = ({ repository, page } :
     }
 
     dispatch(saveRepositories(repositories));
-
-    dispatch(setLoading(false));
   } catch (error) {
     const { message } = error as Error;
-
-    dispatch(setLoading(false));
 
     dispatch(setDialog({
       isOpen: true,
@@ -88,21 +89,23 @@ export const loadRepositories = ({ repository, page } :
       title: '레포지토리를 불러오는데 실패했습니다.',
     }));
   }
+
+  dispatch(setLoading(false));
 };
 
-export const loadMoreRepositories = ({ repository, page } :
-  RequestRepositoriesProps) => async (dispatch: AppDispatch) => {
+export const loadMoreRepositories = () => async (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => {
   dispatch(setLoading(true));
+
+  const { repository: { searchWord, page } } = getState();
   try {
-    const repositories = await getRepository({ repository, page });
+    const repositories = await getRepository({ repository: searchWord, page: page + 1 });
 
     dispatch(saveMoreRepositories(repositories));
-
-    dispatch(setLoading(false));
   } catch (error) {
     const { message } = error as Error;
-
-    dispatch(setLoading(false));
 
     dispatch(setDialog({
       isOpen: true,
@@ -111,4 +114,8 @@ export const loadMoreRepositories = ({ repository, page } :
       title: '레포지토리를 불러오는데 실패했습니다.',
     }));
   }
+
+  dispatch(setLoading(false));
 };
+
+export default reducer;
