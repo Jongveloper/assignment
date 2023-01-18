@@ -12,6 +12,7 @@ dist
 dist-ssr
 coverage
 .env
+.jest
 *.local
 
 # Editor directories and files

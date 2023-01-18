@@ -1,4 +1,5 @@
 export default {
+  setupFiles: ['<rootDir>/.jest/setEnvVars.js'],
   setupFilesAfterEnv: [
     'jest-plugin-context/setup',
     './jest.setup',
