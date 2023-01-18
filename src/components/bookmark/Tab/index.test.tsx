@@ -2,8 +2,8 @@ import { fireEvent, render } from '@testing-library/react';
 import Tab from '.';
 
 describe('Tab이', () => {
-  const handleNavigate = jest.fn();
-  const handleDelete = jest.fn();
+  const handleClickTap = jest.fn();
+  const handleClickDelete = jest.fn();
 
   context('선택되어있지 않다면', () => {
     const renderTab = () => render(
@@ -11,8 +11,8 @@ describe('Tab이', () => {
         id={1}
         fullName="NotSelected"
         selected={false}
-        handleNavigate={handleNavigate}
-        handleDelete={handleDelete}
+        onClickTap={handleClickTap}
+        onClickDelete={handleClickDelete}
       />,
     );
     it('Tab이 보여집니다.', () => {
@@ -21,24 +21,24 @@ describe('Tab이', () => {
       expect(container).toHaveTextContent('NotSelected');
     });
 
-    it('fullName을 누르면 handleNavigate가 호출됩니다.', () => {
+    it('fullName을 누르면 handleClickTap가 호출됩니다.', () => {
       const { getByText } = renderTab();
 
       const navigateButton = getByText('NotSelected');
 
       fireEvent.click(navigateButton);
 
-      expect(handleNavigate).toBeCalled();
+      expect(handleClickTap).toBeCalled();
     });
 
-    it('x를 누르면 handleDelete가 호출됩니다.', () => {
+    it('x를 누르면 handleClickDelete가 호출됩니다.', () => {
       const { getByText } = renderTab();
 
       const deleteButton = getByText('x');
 
       fireEvent.click(deleteButton);
 
-      expect(handleDelete).toBeCalled();
+      expect(handleClickDelete).toBeCalled();
     });
 
     it('TabButton 컬러가 회색입니다.', () => {
@@ -58,8 +58,8 @@ describe('Tab이', () => {
           id={1}
           fullName="Selected"
           selected
-          handleNavigate={handleNavigate}
-          handleDelete={handleDelete}
+          onClickTap={handleClickTap}
+          onClickDelete={handleClickDelete}
         />
       ));
 

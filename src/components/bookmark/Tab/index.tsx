@@ -1,14 +1,7 @@
 import styled from '@emotion/styled';
 
-interface TabButtonProps{
+interface TabButtonProps {
   selected: boolean;
-}
-
-interface TabProps extends TabButtonProps {
-  id: number;
-  fullName: string;
-  handleNavigate: (id: number) => void;
-  handleDelete: (id: number) => void;
 }
 
 const ButtonWrap = styled.div`
@@ -27,7 +20,7 @@ const TabButton = styled.button<TabButtonProps>`
   font-size: 20px;
   font-weight: 700;
 
-  color:${(props) => (props.selected ? 'black' : 'grey')};
+  color: ${(props) => (props.selected ? 'black' : 'grey')};
   cursor: ${(props) => (props.selected ? '' : 'pointer')};
 `;
 
@@ -41,24 +34,32 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
+interface Props extends TabButtonProps {
+  id: number;
+  fullName: string;
+  onClickTap(id: number): void;
+  onClickDelete(id: number): void;
+}
+
 const Tab = ({
   id,
   fullName,
   selected,
-  handleNavigate,
-  handleDelete,
-}: TabProps) => (
+  onClickTap,
+  onClickDelete,
+}: Props) => (
   <ButtonWrap>
     <TabButton
       selected={selected}
-      onClick={() => handleNavigate(id)}
       disabled={selected}
+      onClick={() => onClickTap(id)}
+      type="button"
     >
       {fullName}
     </TabButton>
     <DeleteButton
+      onClick={() => onClickDelete(Number(id))}
       type="button"
-      onClick={() => handleDelete(Number(id))}
     >
       x
     </DeleteButton>
