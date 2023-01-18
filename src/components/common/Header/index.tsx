@@ -2,11 +2,6 @@ import styled from '@emotion/styled';
 
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-interface HeaderProps {
-  bookmarkAmount: number;
-  handleNavigate: ({ path } : {path: string}) => void;
-}
-
 const Wrapper = styled.div`
   position: fixed;
   top: 0px;
@@ -52,18 +47,23 @@ const StyledBookmarkIcon = styled(BookmarkIcon)`
   cursor: pointer;
 `;
 
-const Header = ({ bookmarkAmount, handleNavigate } :HeaderProps) => (
+interface Props {
+  bookmarkCount: number;
+  onClickLink: (path: string) => void;
+}
+
+const Header = ({ bookmarkCount, onClickLink } :Props) => (
   <Wrapper>
-    <h1 onClick={() => handleNavigate({ path: '/' })}>
+    <h1 onClick={() => onClickLink('/')}>
       깃허브 이슈 정리
     </h1>
     <BookmarkInfoWrap>
       <BookmarkCount>
-        {bookmarkAmount}
+        {bookmarkCount}
       </BookmarkCount>
       <StyledBookmarkIcon
         data-testid="bookmarkSvg"
-        onClick={() => handleNavigate({ path: '/bookmark' })}
+        onClick={() => onClickLink('/bookmark')}
       />
     </BookmarkInfoWrap>
   </Wrapper>

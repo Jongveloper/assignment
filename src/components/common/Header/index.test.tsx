@@ -2,11 +2,11 @@ import { fireEvent, render } from '@testing-library/react';
 import Header from '.';
 
 describe('Header', () => {
-  const handleNavigate = jest.fn();
+  const onClick = jest.fn();
   const renderHeader = () => render(
     <Header
-      bookmarkAmount={4}
-      handleNavigate={handleNavigate}
+      bookmarkCount={4}
+      onClickLink={onClick}
     />,
   );
 
@@ -23,7 +23,7 @@ describe('Header', () => {
 
     fireEvent.click(button);
 
-    expect(handleNavigate).toBeCalled();
+    expect(onClick).toBeCalled();
   });
 
   it('bookmark를 누르면 handleNavigate가 호출됩니다.', () => {
@@ -33,6 +33,6 @@ describe('Header', () => {
 
     fireEvent.click(button);
 
-    expect(handleNavigate).toBeCalled();
+    expect(onClick).toBeCalled();
   });
 });
