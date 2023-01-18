@@ -10,13 +10,13 @@ const NoContentsContainer = () => {
 
   const { bookmarks } = useAppSelector((state) => state.bookmark);
 
-  const goHome = useCallback(() => {
+  const handleClick = useCallback(() => {
     navigate('/');
   }, []);
 
   return (
     <>
-      {!bookmarks.length && <NoContents handleNavigate={goHome} />}
+      {!bookmarks.length && <NoContents onClick={handleClick} />}
     </>
   );
 };
