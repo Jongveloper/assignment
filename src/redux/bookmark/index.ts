@@ -7,6 +7,8 @@ import { localStorageSetBookmark } from '../../utils/localStorageSetBookmark';
 
 import { setDialog, setLoading } from '../common';
 
+import { RepositoryInfo } from '../repository/type';
+
 import { AppDispatch, RootState } from '../store';
 
 import { Bookmark, loadIssueProps } from './type';
@@ -84,11 +86,9 @@ export const setRemainBookmark = (id : number) => (
   localStorage.setItem('bookmark', JSON.stringify(remainBookmarks));
 };
 
-export const setBookmark = ({
-  owner,
-  repo,
-  repository,
-}: loadIssueProps) => async (dispatch: AppDispatch, getState: () => RootState) => {
+export const setBookmark = (
+  repository: RepositoryInfo,
+) => async (dispatch: AppDispatch, getState: () => RootState) => {
   const { bookmark: { bookmarks } } = getState();
 
   if (alreadyExistsIn(bookmarks, repository)) {
@@ -114,7 +114,11 @@ export const setBookmark = ({
   }
 
   try {
-    const responseIssues = await getIssue({ owner, repo, page: 1 });
+    const responseIssues = await getIssue({
+      owner: repository.owner,
+      repo: repository.repo,
+      page: 1,
+    });
 
     if (!responseIssues.length) {
       dispatch(setDialog({
@@ -149,16 +153,17 @@ export const setBookmark = ({
   }
 };
 
-export const setMoreBookmarks = ({
-  owner,
-  repo,
-  repository,
-  page,
-}: loadIssueProps) => async (dispatch: AppDispatch, getState: () => RootState) => {
-  const { bookmark: { bookmarks, selectedBookmark } } = getState();
+export const setMoreBookmarkIssues = (
+  repository: RepositoryInfo,
+) => async (dispatch: AppDispatch, getState: () => RootState) => {
+  const { bookmark: { bookmarks, selectedBookmark, page } } = getState();
   dispatch(setLoading(true));
   try {
-    const responseIssues = await getIssue({ owner, repo, page });
+    const responseIssues = await getIssue({
+      owner: repository.owner,
+      repo: repository.repo,
+      page: page + 1,
+    });
 
     const transitionBookmarks = bookmarks.map((bookmark) => {
       if (bookmark.repository.id === repository.id) {
