@@ -6,10 +6,9 @@ describe('NoContents', () => {
   const onClick = jest.fn();
 
   const renderNoContents = () => render(
-    <NoContents
-      handleNavigate={onClick}
-    />,
+    <NoContents onClick={onClick} />,
   );
+
   it('북마크에 저장된게 없어요! 가 나타납니다.', () => {
     const { container } = renderNoContents();
 

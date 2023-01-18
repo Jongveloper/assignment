@@ -8,7 +8,7 @@ const Wrap = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 70rem;
+  height: 25rem;
   margin: auto;
 
   text-align: center;
@@ -23,15 +23,17 @@ const NavigateButton = styled(Button)`
   }
 `;
 
-const NoContents = ({
-  handleNavigate,
-}:{handleNavigate : () => void}) => (
+interface Props {
+  onClick: () => void
+}
+
+const NoContents = ({ onClick }: Props) => (
   <Wrap>
     <div>
       <h1>북마크에 저장된게 없어요!</h1>
       <NavigateButton
         variant="contained"
-        onClick={handleNavigate}
+        onClick={onClick}
       >
         검색하러 가기
       </NavigateButton>
