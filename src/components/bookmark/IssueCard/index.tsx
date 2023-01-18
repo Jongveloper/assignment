@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { Components } from 'react-markdown';
 
 import { Issue } from '../../../redux/bookmark/type';
 
-interface IssueCardProps extends Issue {
+interface Props extends Issue {
   repositoryName: string;
-  goToIssue: (url: string) => void;
+  onClickIssueCard: (url: string) => void;
 }
 
 const Wrap = styled.div`
@@ -31,15 +31,25 @@ const NameWrap = styled.div`
   font-size: 22px;
 `;
 
+const components: Components = {
+  img: (props) => (
+    <img
+      style={{ maxWidth: '100%' }}
+      {...props}
+      alt="issueImage"
+    />
+  ),
+};
+
 const IssueCard = ({
   user,
   title,
   body,
   url,
   repositoryName,
-  goToIssue,
-}: IssueCardProps) => (
-  <Wrap onClick={() => goToIssue(url)}>
+  onClickIssueCard,
+}: Props) => (
+  <Wrap onClick={() => onClickIssueCard(url)}>
     <h1>{repositoryName}</h1>
     <h2>{title}</h2>
     <NameWrap>
@@ -50,19 +60,7 @@ const IssueCard = ({
         {user}
       </b>
     </NameWrap>
-    <ReactMarkdown
-      components={{
-        img: ({
-          node, ...props
-        }) => (
-          <img
-            style={{ maxWidth: '100%' }}
-            {...props}
-            alt="issueImage"
-          />
-        ),
-      }}
-    >
+    <ReactMarkdown components={components}>
       {body}
     </ReactMarkdown>
   </Wrap>
