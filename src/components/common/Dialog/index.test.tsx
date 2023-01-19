@@ -12,8 +12,8 @@ describe('Dialog의', () => {
         message="Alert 다이얼로그"
         title="Alert 다이얼로그 테스트"
         status="ALERT"
-        handleClose={handleClose}
-        handleNavigate={handleNavigate}
+        onCloseDialog={handleClose}
+        onClickNavigateButton={handleNavigate}
       />,
     );
 
@@ -37,8 +37,8 @@ describe('Dialog의', () => {
         message="Error 다이얼로그"
         title="Error 다이얼로그 테스트"
         status="ERROR"
-        handleClose={handleClose}
-        handleNavigate={handleNavigate}
+        onCloseDialog={handleClose}
+        onClickNavigateButton={handleNavigate}
       />,
     );
     it('북마크 보러가기가 보여지지 않습니다.', () => {

@@ -22,7 +22,7 @@ const DialogContainer = () => {
     dispatch(closeDialog());
   }, []);
 
-  const handleNavigate = useCallback(() => {
+  const handleNavigateButton = useCallback(() => {
     navigate(`/bookmark/${setInitialRepositoryId()}`);
   }, []);
 
@@ -36,8 +36,8 @@ const DialogContainer = () => {
       message={message}
       title={title}
       status={status}
-      handleClose={handleCloseDialog}
-      handleNavigate={handleNavigate}
+      onCloseDialog={handleCloseDialog}
+      onClickNavigateButton={handleNavigateButton}
     />
   );
 };
