@@ -124,7 +124,7 @@ describe('repository', () => {
           expect(dispatch.mock.calls[1]).toEqual([{
             type: 'common/setDialog',
             payload: {
-              isOpen: true,
+              showDialog: true,
               message: '다른 레포지토리를 검색해주시길 바랍니다.',
               status: 'ERROR',
               title: '해당하는 레포지토리가 없습니다.',

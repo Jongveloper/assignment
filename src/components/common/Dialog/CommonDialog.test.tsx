@@ -8,10 +8,12 @@ describe('Dialog의', () => {
   context('status가 Alert이면', () => {
     const renderAlertDialog = () => render(
       <CommonDialog
-        isOpen
-        message="Alert 다이얼로그"
-        title="Alert 다이얼로그 테스트"
-        status="ALERT"
+        dialog={{
+          showDialog: true,
+          status: 'ALERT',
+          title: 'AlertTitle',
+          message: 'AlertMessage',
+        }}
         onCloseDialog={handleClose}
         onClickNavigateButton={handleNavigate}
       />,
@@ -20,7 +22,7 @@ describe('Dialog의', () => {
     it('Dialog가 보여집니다.', () => {
       const { getByText } = renderAlertDialog();
 
-      expect(getByText('Alert 다이얼로그')).not.toBeNull();
+      expect(getByText('AlertTitle')).not.toBeNull();
     });
 
     it('북마크 보러가기가 보여집니다.', () => {
@@ -33,10 +35,12 @@ describe('Dialog의', () => {
   context('status가 ERROR면', () => {
     const renderErrorDialog = () => render(
       <CommonDialog
-        isOpen
-        message="Error 다이얼로그"
-        title="Error 다이얼로그 테스트"
-        status="ERROR"
+        dialog={{
+          showDialog: true,
+          status: 'ERROR',
+          title: 'testTitle',
+          message: 'testMessage',
+        }}
         onCloseDialog={handleClose}
         onClickNavigateButton={handleNavigate}
       />,

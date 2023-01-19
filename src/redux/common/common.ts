@@ -10,7 +10,7 @@ interface CommonState {
 export const commonInitailState: CommonState = {
   isLoading: false,
   dialog: {
-    isOpen: false,
+    showDialog: false,
     message: '',
     title: '',
   },
@@ -28,14 +28,10 @@ const { actions, reducer } = createSlice({
       ...state,
       dialog: payload,
     }),
-    closeDialog: (state) => ({
+    cleanDialog: (state) => ({
       ...state,
       dialog: {
-        ...state.dialog,
-        isOpen: false,
-        status: '',
-        message: '',
-        title: '',
+        ...commonInitailState.dialog,
       },
     }),
   },
@@ -44,7 +40,7 @@ const { actions, reducer } = createSlice({
 export const {
   setLoading,
   setDialog,
-  closeDialog,
+  cleanDialog,
 } = actions;
 
 export default reducer;

@@ -69,7 +69,7 @@ export const loadRepositories = () => async (
 
     if (!repositories.length) {
       dispatch(setDialog({
-        isOpen: true,
+        showDialog: true,
         status: 'ERROR',
         message: '다른 레포지토리를 검색해주시길 바랍니다.',
         title: '해당하는 레포지토리가 없습니다.',
@@ -83,7 +83,7 @@ export const loadRepositories = () => async (
     const { message } = error as Error;
 
     dispatch(setDialog({
-      isOpen: true,
+      showDialog: true,
       status: 'ERROR',
       message,
       title: '레포지토리를 불러오는데 실패했습니다.',
@@ -108,7 +108,7 @@ export const loadMoreRepositories = () => async (
     const { message } = error as Error;
 
     dispatch(setDialog({
-      isOpen: true,
+      showDialog: true,
       status: 'ERROR',
       message,
       title: '레포지토리를 불러오는데 실패했습니다.',

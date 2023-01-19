@@ -7,36 +7,34 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { DialogState } from '../../../redux/common/type';
 
-interface Props extends DialogState {
+interface Props {
+  dialog: DialogState
   onCloseDialog: () => void;
   onClickNavigateButton: () => void;
 }
 
 const CommonDialog = ({
-  isOpen,
-  message,
-  title,
-  status,
+  dialog,
   onCloseDialog,
   onClickNavigateButton,
 }: Props) => (
   <div>
     <Dialog
-      open={isOpen}
+      open={dialog.showDialog}
       onClose={onCloseDialog}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        {title}
+        {dialog.title}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {message}
+          {dialog.message}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        {status === 'ALERT' && <Button onClick={onClickNavigateButton}>북마크 보러가기</Button>}
+        {dialog.status === 'ALERT' && <Button onClick={onClickNavigateButton}>북마크 보러가기</Button>}
         <Button onClick={onCloseDialog} autoFocus>
           닫기
         </Button>

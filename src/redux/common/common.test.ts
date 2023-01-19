@@ -1,7 +1,7 @@
 import reducer, {
   setLoading,
   setDialog,
-  closeDialog,
+  cleanDialog,
   commonInitailState,
 } from './common';
 
@@ -19,7 +19,7 @@ describe('commonSlice', () => {
 
   context('setDialog', () => {
     const dialog = {
-      isOpen: true,
+      showDialog: true,
       status: 'ALERT',
       message: 'test',
       title: 'test',
@@ -34,26 +34,25 @@ describe('commonSlice', () => {
     });
   });
 
-  context('closeDialog', () => {
+  context('cleanDialog', () => {
     it('dialog가 cleanUp됩니다.', () => {
       const state = reducer(
         {
           ...commonInitailState,
           dialog: {
-            isOpen: true,
+            showDialog: true,
             status: 'ALERT',
             message: 'test',
             title: 'test',
           },
         },
-        closeDialog(),
+        cleanDialog(),
       );
 
       expect(state.dialog).toEqual({
-        isOpen: false,
+        showDialog: false,
         message: '',
         title: '',
-        status: '',
       });
     });
   });

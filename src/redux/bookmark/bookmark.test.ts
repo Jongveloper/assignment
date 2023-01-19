@@ -242,7 +242,7 @@ describe('bookmark', () => {
           expect(dispatch).toBeCalledWith({
             type: 'common/setDialog',
             payload: {
-              isOpen: true,
+              showDialog: true,
               message: '레포지토리에 이슈가 없습니다.',
               status: 'ERROR',
               title: '북마크 저장에 실패했습니다.',
@@ -271,7 +271,7 @@ describe('bookmark', () => {
           expect(dispatch).toBeCalledWith({
             type: 'common/setDialog',
             payload: {
-              isOpen: true,
+              showDialog: true,
               message: '북마크는 최대 4개까지 저장할 수 있습니다.',
               status: 'ALERT',
               title: '북마크 저장에 실패했습니다.',
@@ -300,7 +300,7 @@ describe('bookmark', () => {
           expect(dispatch).toBeCalledWith({
             type: 'common/setDialog',
             payload: {
-              isOpen: true,
+              showDialog: true,
               message: '이미 북마크에 저장되었습니다.',
               status: 'ALERT',
               title: '북마크 저장에 실패했습니다.',

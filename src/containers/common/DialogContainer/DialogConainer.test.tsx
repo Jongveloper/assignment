@@ -21,7 +21,7 @@ describe('DialogContainer는', () => {
     <DialogContainer />,
   );
 
-  context('isOpen인 상태면서', () => {
+  context('showDialog인 상태면서', () => {
     context('status가 ALERT일 때', () => {
       beforeEach(() => {
         jest.clearAllMocks();
@@ -37,7 +37,7 @@ describe('DialogContainer는', () => {
             ...commonInitailState,
             dialog: {
               ...commonInitailState.dialog,
-              isOpen: true,
+              showDialog: true,
               status: 'ALERT',
               title: 'test',
               message: 'success',
@@ -88,7 +88,7 @@ describe('DialogContainer는', () => {
             ...commonInitailState,
             dialog: {
               ...commonInitailState.dialog,
-              isOpen: true,
+              showDialog: true,
               status: 'ERROR',
             },
           },
@@ -112,7 +112,7 @@ describe('DialogContainer는', () => {
         fireEvent.click(closeButton);
 
         expect(dispatch).toBeCalledWith({
-          type: 'common/closeDialog',
+          type: 'common/cleanDialog',
         });
       });
     });
