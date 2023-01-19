@@ -2,9 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import bookmarkSlice from './bookmark';
-import commonSlice from './common';
-import repositorySlice from './repository';
+import bookmarkSlice from './bookmark/bookmark';
+import commonSlice from './common/common';
+import repositorySlice from './repository/repository';
 
 export const store = configureStore({
   reducer: {

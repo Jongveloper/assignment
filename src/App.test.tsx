@@ -4,9 +4,9 @@ import { MemoryRouter } from 'react-router-dom';
 
 import App from './App';
 
-import { bookmarkInitialState } from './redux/bookmark';
-import { commonInitailState } from './redux/common';
-import { repositoryInitialState } from './redux/repository';
+import { bookmarkInitialState } from './redux/bookmark/bookmark';
+import { commonInitailState } from './redux/common/common';
+import { repositoryInitialState } from './redux/repository/repository';
 
 import { RootState, useAppDispatch, useAppSelector } from './redux/store';
 

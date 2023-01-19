@@ -1,8 +1,8 @@
 import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
 
-import Bookmark from './pages/Bookmark';
-import Main from './pages/Main';
+import Bookmark from './pages/Bookmark/Bookmark';
+import Main from './pages/Main/Main';
 
 import reset from './reset';
 
