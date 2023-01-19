@@ -73,6 +73,8 @@ export const loadRepositories = () => async (
         title: '해당하는 레포지토리가 없습니다.',
       }));
 
+      dispatch(dontShowLoading());
+
       return;
     }
 
