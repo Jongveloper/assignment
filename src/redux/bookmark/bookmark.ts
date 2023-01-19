@@ -5,7 +5,11 @@ import { getIssue } from '../../service/bookmark/getIssue';
 import { alreadyExistsIn } from '../../utils/alreadyExistsIn';
 import { localStorageSetBookmark } from '../../utils/localStorageSetBookmark';
 
-import { setDialog, setLoading } from '../common/common';
+import {
+  setLoading,
+  showAlert,
+  showError,
+} from '../common/common';
 
 import { RepositoryInfo } from '../repository/type';
 
@@ -97,9 +101,7 @@ export const setBookmark = (
   const { bookmark: { bookmarks } } = getState();
 
   if (alreadyExistsIn(bookmarks, repository)) {
-    dispatch(setDialog({
-      showDialog: true,
-      status: 'ALERT',
+    dispatch(showAlert({
       message: '이미 북마크에 저장되었습니다.',
       title: '북마크 저장에 실패했습니다.',
     }));
@@ -108,9 +110,7 @@ export const setBookmark = (
   }
 
   if (bookmarks.length >= MAX_BOOKMARKS_SIZE) {
-    dispatch(setDialog({
-      showDialog: true,
-      status: 'ALERT',
+    dispatch(showAlert({
       message: `북마크는 최대 ${MAX_BOOKMARKS_SIZE}개까지 저장할 수 있습니다.`,
       title: '북마크 저장에 실패했습니다.',
     }));
@@ -126,9 +126,7 @@ export const setBookmark = (
     });
 
     if (!responseIssues.length) {
-      dispatch(setDialog({
-        showDialog: true,
-        status: 'ERROR',
+      dispatch(showError({
         message: '레포지토리에 이슈가 없습니다.',
         title: '북마크 저장에 실패했습니다.',
       }));
@@ -140,18 +138,14 @@ export const setBookmark = (
 
     localStorageSetBookmark(responseIssues, repository);
 
-    dispatch(setDialog({
-      showDialog: true,
-      status: 'ALERT',
+    dispatch(showAlert({
       message: '북마크에 저장되었습니다.',
       title: '북마크',
     }));
   } catch (error) {
     const { message } = error as Error;
 
-    dispatch(setDialog({
-      showDialog: true,
-      status: 'ERROR',
+    dispatch(showError({
       message,
       title: '북마크 저장에 실패했습니다.',
     }));
@@ -198,7 +192,7 @@ export const setMoreBookmarkIssues = (
 
     dispatch(setLoading(false));
 
-    dispatch(setDialog({
+    dispatch(showError({
       showDialog: true,
       status: 'ERROR',
       message,

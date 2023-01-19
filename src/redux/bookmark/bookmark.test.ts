@@ -234,17 +234,15 @@ describe('bookmark', () => {
       });
 
       context('Issue가 없다면', () => {
-        it('dispatch가 setDialog와 함께 호출됩니다.', async () => {
+        it('dispatch가 showError와 함께 호출됩니다.', async () => {
           (getIssue as jest.Mock).mockResolvedValue({});
 
           await setBookmark(notExistRepository)(dispatch, getState);
 
           expect(dispatch).toBeCalledWith({
-            type: 'common/setDialog',
+            type: 'common/showError',
             payload: {
-              showDialog: true,
               message: '레포지토리에 이슈가 없습니다.',
-              status: 'ERROR',
               title: '북마크 저장에 실패했습니다.',
             },
           });
@@ -252,7 +250,7 @@ describe('bookmark', () => {
       });
 
       context('북마크가 4개 이상이라면', () => {
-        it('dispatch가 setDialog와 함께 호출됩니다.', async () => {
+        it('dispatch가 showAlert과 함께 호출됩니다.', async () => {
           getState = jest.fn(() => ({
             bookmark: {
               ...bookmarkInitialState,
@@ -269,11 +267,9 @@ describe('bookmark', () => {
           await setBookmark(notExistRepository)(dispatch, getState);
 
           expect(dispatch).toBeCalledWith({
-            type: 'common/setDialog',
+            type: 'common/showAlert',
             payload: {
-              showDialog: true,
               message: '북마크는 최대 4개까지 저장할 수 있습니다.',
-              status: 'ALERT',
               title: '북마크 저장에 실패했습니다.',
             },
           });
@@ -281,7 +277,7 @@ describe('bookmark', () => {
       });
 
       context('이미 북마크에 존재한다면', () => {
-        it('dispatch가 setDialog와 함께 호출됩니다.', async () => {
+        it('dispatch가 showAlert과 함께 호출됩니다.', async () => {
           getState = jest.fn(() => ({
             bookmark: {
               ...bookmarkInitialState,
@@ -298,11 +294,9 @@ describe('bookmark', () => {
           await setBookmark(repository)(dispatch, getState);
 
           expect(dispatch).toBeCalledWith({
-            type: 'common/setDialog',
+            type: 'common/showAlert',
             payload: {
-              showDialog: true,
               message: '이미 북마크에 저장되었습니다.',
-              status: 'ALERT',
               title: '북마크 저장에 실패했습니다.',
             },
           });

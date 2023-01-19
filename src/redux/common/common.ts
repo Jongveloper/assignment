@@ -24,14 +24,26 @@ const { actions, reducer } = createSlice({
       ...state,
       showLoading: payload,
     }),
-    setDialog: (state, { payload }) => ({
-      ...state,
-      dialog: payload,
-    }),
     cleanDialog: (state) => ({
       ...state,
       dialog: {
         ...commonInitailState.dialog,
+      },
+    }),
+    showAlert: (state, { payload }) => ({
+      ...state,
+      dialog: {
+        showDialog: true,
+        status: 'ALERT',
+        ...payload,
+      },
+    }),
+    showError: (state, { payload }) => ({
+      ...state,
+      dialog: {
+        showDialog: true,
+        status: 'ERROR',
+        ...payload,
       },
     }),
   },
@@ -39,8 +51,9 @@ const { actions, reducer } = createSlice({
 
 export const {
   setLoading,
-  setDialog,
   cleanDialog,
+  showAlert,
+  showError,
 } = actions;
 
 export default reducer;

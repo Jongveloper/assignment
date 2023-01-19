@@ -116,17 +116,15 @@ describe('repository', () => {
       });
 
       context('response가 없다면', () => {
-        it('dispatch가 setDialog와 함께 호출됩니다.', async () => {
+        it('dispatch가 showError와 함께 호출됩니다.', async () => {
           jest.clearAllMocks();
           (getRepository as jest.Mock).mockResolvedValue([]);
           await loadRepositories()(dispatch, getState);
 
           expect(dispatch.mock.calls[1]).toEqual([{
-            type: 'common/setDialog',
+            type: 'common/showError',
             payload: {
-              showDialog: true,
               message: '다른 레포지토리를 검색해주시길 바랍니다.',
-              status: 'ERROR',
               title: '해당하는 레포지토리가 없습니다.',
             },
           }]);

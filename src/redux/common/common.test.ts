@@ -1,8 +1,9 @@
 import reducer, {
   setLoading,
-  setDialog,
   cleanDialog,
   commonInitailState,
+  showAlert,
+  showError,
 } from './common';
 
 describe('commonSlice', () => {
@@ -17,20 +18,33 @@ describe('commonSlice', () => {
     });
   });
 
-  context('setDialog', () => {
+  context('showAlert', () => {
     const dialog = {
-      showDialog: true,
-      status: 'ALERT',
       message: 'test',
       title: 'test',
     };
     it('dialog 상태가 변경됩니다.', () => {
       const state = reducer(
         commonInitailState,
-        setDialog(dialog),
+        showAlert(dialog),
       );
 
-      expect(state.dialog).toEqual(dialog);
+      expect(state.dialog).toEqual({ ...dialog, showDialog: true, status: 'ALERT' });
+    });
+  });
+
+  context('showError', () => {
+    const dialog = {
+      message: 'test',
+      title: 'test',
+    };
+    it('dialog 상태가 변경됩니다.', () => {
+      const state = reducer(
+        commonInitailState,
+        showError(dialog),
+      );
+
+      expect(state.dialog).toEqual({ ...dialog, showDialog: true, status: 'ERROR' });
     });
   });
 

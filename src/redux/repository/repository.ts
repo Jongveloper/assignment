@@ -6,7 +6,7 @@ import { getRepository } from '../../service/repository/getRepository';
 
 import { RepositoryInfo } from './type';
 
-import { setDialog, setLoading } from '../common/common';
+import { setLoading, showError } from '../common/common';
 
 export interface RepositoryState {
   repositories: RepositoryInfo[];
@@ -68,9 +68,7 @@ export const loadRepositories = () => async (
     });
 
     if (!repositories.length) {
-      dispatch(setDialog({
-        showDialog: true,
-        status: 'ERROR',
+      dispatch(showError({
         message: '다른 레포지토리를 검색해주시길 바랍니다.',
         title: '해당하는 레포지토리가 없습니다.',
       }));
@@ -82,7 +80,7 @@ export const loadRepositories = () => async (
   } catch (error) {
     const { message } = error as Error;
 
-    dispatch(setDialog({
+    dispatch(showError({
       showDialog: true,
       status: 'ERROR',
       message,
@@ -107,7 +105,7 @@ export const loadMoreRepositories = () => async (
   } catch (error) {
     const { message } = error as Error;
 
-    dispatch(setDialog({
+    dispatch(showError({
       showDialog: true,
       status: 'ERROR',
       message,
