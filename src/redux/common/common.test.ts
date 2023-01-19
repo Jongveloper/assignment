@@ -4,6 +4,7 @@ import reducer, {
   commonInitailState,
   showAlert,
   showError,
+  dontShowLoading,
 } from './common';
 
 describe('commonSlice', () => {
@@ -15,6 +16,21 @@ describe('commonSlice', () => {
       );
 
       expect(state.showLoading).toBe(true);
+    });
+  });
+
+  context('dontShowLoading', () => {
+    it('loading 상태가 변경됩니다.', () => {
+      const state = reducer(
+        {
+          ...commonInitailState,
+          showLoading: true,
+        },
+
+        dontShowLoading(),
+      );
+
+      expect(state.showLoading).toBe(false);
     });
   });
 
