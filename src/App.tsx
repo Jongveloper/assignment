@@ -14,6 +14,7 @@ function App() {
         <Route index element={<Main />} />
         <Route path="/bookmark/*" element={<Bookmark />} />
         <Route path="/bookmark/:repositoryId" element={<Bookmark />} />
+        <Route path="*" element={<Main />} />
       </Routes>
     </>
   );
