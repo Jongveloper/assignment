@@ -1,55 +1,22 @@
-export const setCircleColor = (language: string) => {
-  if (language === 'JavaScript') {
-    return '#FFF200';
-  }
-
-  if (language === 'TypeScript') {
-    return '#000080';
-  }
-
-  if (language === 'HTML') {
-    return '#FF4500';
-  }
-
-  if (language === 'CSS') {
-    return '#CC8899';
-  }
-
-  if (language === 'JAVA') {
-    return '#B5651D';
-  }
-
-  if (language === 'Python') {
-    return '#00008B';
-  }
-
-  if (language === 'Vue') {
-    return '228B22';
-  }
-
-  if (language === 'PHP') {
-    return 'ACACE6';
-  }
-
-  if (language === 'Ruby') {
-    return '#691734';
-  }
-
-  if (language === 'Swift') {
-    return '#FF5349';
-  }
-
-  if (language === 'Go') {
-    return 'skyblue';
-  }
-
-  if (language === 'C#') {
-    return 'green';
-  }
-
-  if (language === 'Jupyter Notebook') {
-    return '#DC5539';
-  }
-
-  return 'white';
+const colors: any = {
+  JavaScript: '#FFF200',
+  TypeScript: '#000080',
+  HTML: '#FF4500',
+  CSS: '#CC8899',
+  JAVA: '#B5651D',
+  Python: '#00008B',
+  Vue: '#228B22',
+  PHP: 'ACACE6',
+  Ruby: '#691734',
+  Swift: '#FF5349',
+  Go: 'skyblue',
+  'C#': 'green',
+  'Jupyter Notebook': '#DC5539',
+  Dart: '#005666',
+  Shell: '#60FBC5',
+  Rust: '#FBCEB1',
+  'Objective-C': '#0067A3',
+  Kotlin: '#4D377B',
 };
+
+export const setCircleColor = (language: string): string => colors[language] ?? 'white';
