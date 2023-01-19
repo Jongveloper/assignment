@@ -6,9 +6,10 @@ import { alreadyExistsIn } from '../../utils/alreadyExistsIn';
 import { localStorageSetBookmark } from '../../utils/localStorageSetBookmark';
 
 import {
-  setLoading,
+  dontShowLoading,
   showAlert,
   showError,
+  showLoading,
 } from '../common/common';
 
 import { RepositoryInfo } from '../repository/type';
@@ -156,7 +157,7 @@ export const setMoreBookmarkIssues = (
   repository: RepositoryInfo,
 ) => async (dispatch: AppDispatch, getState: () => RootState) => {
   const { bookmark: { bookmarks, selectedBookmark, page } } = getState();
-  dispatch(setLoading(true));
+  dispatch(showLoading());
   try {
     const responseIssues = await getIssue({
       owner: repository.owner,
@@ -185,12 +186,8 @@ export const setMoreBookmarkIssues = (
     }));
 
     localStorage.setItem('bookmark', JSON.stringify(transitionBookmarks));
-
-    dispatch(setLoading(false));
   } catch (error) {
     const { message } = error as Error;
-
-    dispatch(setLoading(false));
 
     dispatch(showError({
       showDialog: true,
@@ -199,6 +196,7 @@ export const setMoreBookmarkIssues = (
       title: '이슈를 불러오는데 실패했습니다.',
     }));
   }
+  dispatch(dontShowLoading());
 };
 
 export default reducer;

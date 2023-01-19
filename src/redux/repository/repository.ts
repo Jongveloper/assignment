@@ -6,7 +6,7 @@ import { getRepository } from '../../service/repository/getRepository';
 
 import { RepositoryInfo } from './type';
 
-import { setLoading, showError } from '../common/common';
+import { dontShowLoading, showError, showLoading } from '../common/common';
 
 export interface RepositoryState {
   repositories: RepositoryInfo[];
@@ -57,7 +57,7 @@ export const loadRepositories = () => async (
   dispatch: AppDispatch,
   getState: () => RootState,
 ) => {
-  dispatch(setLoading(true));
+  dispatch(showLoading());
 
   const { repository: { searchWord } } = getState();
 
@@ -88,14 +88,14 @@ export const loadRepositories = () => async (
     }));
   }
 
-  dispatch(setLoading(false));
+  dispatch(dontShowLoading());
 };
 
 export const loadMoreRepositories = () => async (
   dispatch: AppDispatch,
   getState: () => RootState,
 ) => {
-  dispatch(setLoading(true));
+  dispatch(showLoading());
 
   const { repository: { searchWord, page } } = getState();
   try {
@@ -113,7 +113,7 @@ export const loadMoreRepositories = () => async (
     }));
   }
 
-  dispatch(setLoading(false));
+  dispatch(dontShowLoading());
 };
 
 export default reducer;

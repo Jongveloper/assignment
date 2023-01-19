@@ -352,8 +352,7 @@ describe('bookmark', () => {
       await setMoreBookmarkIssues(repository)(dispatch, getState);
 
       expect(dispatch.mock.calls[0][0]).toEqual({
-        payload: true,
-        type: 'common/setLoading',
+        type: 'common/showLoading',
       });
 
       expect(dispatch.mock.calls[1]).toEqual([{

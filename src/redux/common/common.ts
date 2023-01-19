@@ -20,9 +20,13 @@ const { actions, reducer } = createSlice({
   name: 'common',
   initialState: commonInitailState,
   reducers: {
-    setLoading: (state, { payload }) => ({
+    showLoading: (state) => ({
       ...state,
-      showLoading: payload,
+      showLoading: true,
+    }),
+    dontShowLoading: (state) => ({
+      ...state,
+      showLoading: false,
     }),
     cleanDialog: (state) => ({
       ...state,
@@ -50,10 +54,11 @@ const { actions, reducer } = createSlice({
 });
 
 export const {
-  setLoading,
   cleanDialog,
   showAlert,
   showError,
+  dontShowLoading,
+  showLoading,
 } = actions;
 
 export default reducer;

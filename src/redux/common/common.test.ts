@@ -1,5 +1,5 @@
 import reducer, {
-  setLoading,
+  showLoading,
   cleanDialog,
   commonInitailState,
   showAlert,
@@ -7,11 +7,11 @@ import reducer, {
 } from './common';
 
 describe('commonSlice', () => {
-  context('setLoading', () => {
+  context('showLoading', () => {
     it('loading 상태가 변경됩니다.', () => {
       const state = reducer(
         commonInitailState,
-        setLoading(true),
+        showLoading(),
       );
 
       expect(state.showLoading).toBe(true);

@@ -99,8 +99,7 @@ describe('repository', () => {
           await loadRepositories()(dispatch, getState);
 
           expect(dispatch.mock.calls[0][0]).toEqual({
-            type: 'common/setLoading',
-            payload: true,
+            type: 'common/showLoading',
           });
 
           expect(dispatch.mock.calls[1]).toEqual([{
@@ -109,8 +108,7 @@ describe('repository', () => {
           }]);
 
           expect(dispatch.mock.calls[2]).toEqual([{
-            type: 'common/setLoading',
-            payload: false,
+            type: 'common/dontShowLoading',
           }]);
         });
       });
