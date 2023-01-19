@@ -27,7 +27,7 @@ describe('LoadingContainer는', () => {
       },
       common: {
         ...commonInitailState,
-        isLoading: true,
+        showLoading: true,
       },
       repository: {
         ...repositoryInitialState,

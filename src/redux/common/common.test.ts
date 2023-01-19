@@ -13,7 +13,7 @@ describe('commonSlice', () => {
         setLoading(true),
       );
 
-      expect(state.isLoading).toBe(true);
+      expect(state.showLoading).toBe(true);
     });
   });
 

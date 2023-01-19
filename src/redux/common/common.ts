@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { DialogState } from './type';
 
 interface CommonState {
-  isLoading: boolean;
+  showLoading: boolean;
   dialog: DialogState;
 }
 
 export const commonInitailState: CommonState = {
-  isLoading: false,
+  showLoading: false,
   dialog: {
     showDialog: false,
     message: '',
@@ -22,7 +22,7 @@ const { actions, reducer } = createSlice({
   reducers: {
     setLoading: (state, { payload }) => ({
       ...state,
-      isLoading: payload,
+      showLoading: payload,
     }),
     setDialog: (state, { payload }) => ({
       ...state,

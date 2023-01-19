@@ -3,11 +3,11 @@ import Loading from '../../../components/common/Loading/Loading';
 import { useAppSelector } from '../../../redux/store';
 
 const LoadingContainer = () => {
-  const { isLoading } = useAppSelector((state) => state.common);
+  const { showLoading } = useAppSelector((state) => state.common);
 
   return (
     <>
-      {isLoading && <Loading />}
+      {showLoading && <Loading />}
     </>
   );
 };
